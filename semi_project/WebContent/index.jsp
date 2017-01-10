@@ -8,7 +8,8 @@
 <style type="text/css">
 	#wrap{width:1300px;height:1300px}
 	#header{width:1100px;height:250px;background-color:pink;margin-left:100px;}
-	#content{width:1100px;height:800px;background-color:yellow;margin-left:100px;}
+	#category{width:1100px;height:100px;background-color:gold;margin-left:100px;}
+	#content{width:1100px;height:700px;background-color:yellow;margin-left:100px;}
 	#footer{width:1100px;height:250px;background-color:gray;margin-left:100px;}
 </style>
 </head>
@@ -16,6 +17,9 @@
 <div id="wrap">
 	<div id="header">
 	<jsp:include page="${requestScope.head }"/>
+	</div>
+	<div id="category">
+	<jsp:include page="${requestScope.category }"/>
 	</div>
 	<div id="content">
 	<jsp:include page="${requestScope.content }"/>

@@ -16,6 +16,7 @@ public class Starter extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setAttribute("head", "/defaultHeader.jsp");
+		req.setAttribute("category", "/defaultCategory.jsp");
 		req.setAttribute("content", "/defaultContent.jsp");
 		CategoryDao dao=new CategoryDao();
 		ArrayList<CategoryDTO> list=dao.list();

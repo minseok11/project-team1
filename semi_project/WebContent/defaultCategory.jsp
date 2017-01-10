@@ -11,9 +11,9 @@
 </script>
 </head>
 <body>
-<div id="content1">
-	<c:forEach var="list1" items="${requestScope.list1 }">
-		<a href="/mainController.do?cmd=itemPage&$item={list.categoryList}">${list1.categoryList}</a>
+<div id="category1">
+	<c:forEach var="list" items="${requestScope.list }">
+		<a href="/mainController.do?cmd=itemPage&$item={list.categoryList}">${list.categoryList}</a>
 	</c:forEach>
 </div>
 </body>
