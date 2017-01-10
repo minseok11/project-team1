@@ -1,20 +1,20 @@
 package shopping.dto;
 
 public class ImgUploadDTO {
-	String imgNum;
+	int imgNum;
 	String imgLoot;
 	int boardNum;
 	public ImgUploadDTO(){}
-	public ImgUploadDTO(String imgNum, String imgLoot, int boardNum) {
+	public ImgUploadDTO(int imgNum, String imgLoot, int boardNum) {
 		super();
 		this.imgNum = imgNum;
 		this.imgLoot = imgLoot;
 		this.boardNum = boardNum;
 	}
-	public String getImgNum() {
+	public int getImgNum() {
 		return imgNum;
 	}
-	public void setImgNum(String imgNum) {
+	public void setImgNum(int imgNum) {
 		this.imgNum = imgNum;
 	}
 	public String getImgLoot() {

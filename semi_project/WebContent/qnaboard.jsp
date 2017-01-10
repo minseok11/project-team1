@@ -5,6 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+	#1{width:200px;height:100px;border:1px solid black;}
+	#2{width:605px;height:600px;border:1px solid black;}
+</style>
 </head>
 <body>
 <form method="post" action="/"></form>
@@ -18,16 +22,18 @@
 	<option value="상품문의">상품문의</option>
 	<option value="기타문의">기타문의</option>
 </select><br><br>
-<div>
+<div id="1">
 답변받으실분<br>
 성명<input type="text" value="${requestScope.name }" disabled="disabled">
 <input type="hidden" value="${requestScope.name }" name="name"><br>
 이메일<input type="text" value="${requestScope.email }" name="email"><br>
 연락처<input type="text" value="${requestScope.phone }" name="phone"><br>
 </div>
+<div id="2">
 문의하기<br>
 제목<input type="text" name="title"><br><br>
 내용<br><textarea name="content" rows="30" cols="80"></textarea><br><br>
+</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="submit" value="문의하기">
 </body>
