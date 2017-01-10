@@ -14,5 +14,6 @@ public class Starter extends HttpServlet{
 		req.setAttribute("head", "/defaultHeader.jsp");
 		req.setAttribute("content", "/defaultContent.jsp");
 		req.getRequestDispatcher("/index.jsp").forward(req, res);
+		
 	}
 }
