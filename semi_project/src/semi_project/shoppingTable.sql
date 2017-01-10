@@ -73,13 +73,13 @@ CREATE TABLE CUSTOMERINFO
 (
 	ID varchar2(15 char) NOT NULL,
 	PASSWORD varchar2(15 char) NOT NULL,
+	QESLIST varchar2(25 char),
+	ANS varchar2(15 char),
+	NAME varchar2(15 char),
+	GENDER varchar2(5 char),
 	EMAIL varchar2(25 char),
 	PHONENO varchar2(11 char),
-	NAME varchar2(15 char),
 	ADRESS varchar2(25 char),
-	GENDER varchar2(5 char),
-	ANS varchar2(15 char),
-	QESLIST varchar2(25 char),
 	PRIMARY KEY (ID)
 );
 
