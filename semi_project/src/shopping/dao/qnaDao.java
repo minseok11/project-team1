@@ -1,7 +1,6 @@
 package shopping.dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 
 import jdbc.util.jdbcUtil;
 import shopping.dto.QAboardDTO;
-
 
 public class qnaDao {
 	public ArrayList<QAboardDTO> list(String id){
