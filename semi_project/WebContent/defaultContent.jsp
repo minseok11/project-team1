@@ -6,16 +6,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
+<style>
+	#content1{width:800px;height:1000px;background-color:white;margin-left:150px;}
+	.items{width:100px;height:120px;border:1px solid black;border-radious:2px;margin-rigth:50px;}
+	img{width:40px;height:50px;border-radious:2px}
 	
+	
+</style>
+<script type="text/javascript">
 </script>
 </head>
 <body>
 <div id="content1">
 	<c:forEach var="list1" items="${requestScope.list1 }">
-		<a href="/mainController.do?cmd=itemPage&$item={list.categoryList}">${list1.categoryList}</a><br>
-		
-		
+		<div class="items">
+			<a href="/mainController.do?cmd=itemPage&$item=${list1.name}"><img src="${list1.itemImgRoot }"></a><br>
+			<a href="/mainController.do?cmd=itemPage&$item=${list1.name}">${list1.name}</a><br>
+		</div>
 	</c:forEach>
 </div>
 </body>

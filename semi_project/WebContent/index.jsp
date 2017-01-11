@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	#wrap{width:1300px;height:1300px}
+	#wrap{width:1300px;height:1600px}
 	#header{width:1100px;height:250px;background-color:pink;margin-left:100px;}
 	#category{width:1100px;height:100px;background-color:gold;margin-left:100px;}
-	#content{width:1100px;height:700px;background-color:yellow;margin-left:100px;}
+	#content{width:1100px;height:1000px;background-color:yellow;margin-left:100px;}
 	#footer{width:1100px;height:250px;background-color:gray;margin-left:100px;}
 </style>
 </head>
@@ -19,7 +19,7 @@
 	<jsp:include page="${requestScope.head }"/>
 	</div>
 	<div id="category">
-	<jsp:include page="${requestScope.category }"/>
+	<jsp:include page="/defaultCategory.jsp"/>
 	</div>
 	<div id="content">
 	<jsp:include page="${requestScope.content }"/>

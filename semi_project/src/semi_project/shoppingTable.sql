@@ -165,7 +165,6 @@ CREATE TABLE ITEM
 	INVENTORY number,
 	NAME varchar2(15 char),
 	RETAILPRICE number,
-	CATEGORY varchar2(15 char),
 	ITEMIMGROOT varchar2(50 char),
 	CATEGORYLIST varchar2(15 char) NOT NULL,
 	PRIMARY KEY (CODE)

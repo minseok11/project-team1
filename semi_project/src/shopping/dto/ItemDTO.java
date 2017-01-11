@@ -7,7 +7,7 @@ public class ItemDTO {
 	String name;
 	int retailPrice;
 	String category;
-	String ItemImgRoot;
+	String itemImgRoot;
 	String categoryList;
 	public ItemDTO(){}
 	public ItemDTO(String code, int price, int inventory, String name, int retailPrice, String category,
@@ -19,7 +19,7 @@ public class ItemDTO {
 		this.name = name;
 		this.retailPrice = retailPrice;
 		this.category = category;
-		ItemImgRoot = itemImgRoot;
+		this.itemImgRoot = itemImgRoot;
 		this.categoryList = categoryList;
 	}
 	public String getCode() {
@@ -58,11 +58,11 @@ public class ItemDTO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getItemImgRoot() {
-		return ItemImgRoot;
+	public String getitemImgRoot() {
+		return itemImgRoot;
 	}
-	public void setItemImgRoot(String itemImgRoot) {
-		ItemImgRoot = itemImgRoot;
+	public void setitemImgRoot(String itemImgRoot) {
+		this.itemImgRoot = itemImgRoot;
 	}
 	public String getCategoryList() {
 		return categoryList;

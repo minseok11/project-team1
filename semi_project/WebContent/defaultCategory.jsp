@@ -6,14 +6,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+	.cateName{font-size:25px;font-family:fantasy;}
+	#category1{padding-top:30px;}
+</style>
 <script type="text/javascript">
 	
 </script>
 </head>
 <body>
-<div id="category1">
+<div id="category1" align="center">
 	<c:forEach var="list" items="${requestScope.list }">
-		<a href="/mainController.do?cmd=itemPage&$item={list.categoryList}">${list.categoryList}</a>
+		<%-- ${c:length(requestScope.list)}--%>
+		<a class="cateName" href="/mainController.do?cmd=itemPage&$item=${list.categoryList}">${list.categoryList}</a>
 	</c:forEach>
 </div>
 </body>
