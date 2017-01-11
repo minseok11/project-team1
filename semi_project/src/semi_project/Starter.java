@@ -9,10 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import shopping.dao.CategoryDao;
+import shopping.dao.itemDao;
 import shopping.dto.CategoryDTO;
+import shopping.dto.ItemDTO;
 @WebServlet("/starter.do")
 public class Starter extends HttpServlet{
 	@Override
@@ -27,6 +28,9 @@ public class Starter extends HttpServlet{
 		CategoryDao dao=new CategoryDao();
 		ArrayList<CategoryDTO> list=dao.list();
 		req.setAttribute("list",list);
+		itemDao dao1=new itemDao();
+		ArrayList<ItemDTO> list1=dao1.list();
+		req.setAttribute("list1", list1);
 		req.getRequestDispatcher("/index.jsp").forward(req, res);
 		
 	}

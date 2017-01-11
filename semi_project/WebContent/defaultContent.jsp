@@ -8,10 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-	#content1{width:800px;height:1000px;background-color:white;margin-left:150px;}
-	.items{width:100px;height:120px;border:1px solid black;border-radious:2px;margin-rigth:50px;float:left;}
-	img{width:40px;height:50px;border-radious:2px}
-	
+	@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+	#content1{width:1000px;height:1000px;background-color:white;margin-left:50px;}
+	.items{width:300px;height:350px;border:1px solid black;border-radious:2px;margin-rigth:50px;float:left;margin-left:20px;margin-top:50px;}
+	img{width:240px;height:280px;border-radious:2px;margin-top:15px;}
+	.a{font-size:30px;font-family:'Nanum Pen Script';text-decoration:none}
 	
 </style>
 <script type="text/javascript">
@@ -21,10 +22,10 @@
 <div id="content1">
 	<c:forEach var="list1" items="${requestScope.list1 }">
 		<div class="items" align="center">
-			<a href="/mainController.do?cmd=itemPage&$item=${list1.name}"><img src="${list1.itemImgRoot }"></a><br>
-			<a href="/mainController.do?cmd=itemPage&$item=${list1.name}">${list1.name}</a>
+			<a href="/mainController.do?cmd=itemPage&$itemCode=${list1.code}"><img src="${list1.itemImgRoot }"></a><br><br>
+			<a class="a" href="/mainController.do?cmd=itemPage&$itemCode=${list1.code}">${list1.name}</a>
 		</div>
-		<c:if test="${fn:length(requestScope.list1 % 3)}==0">
+		<c:if test="${fn:length(requestScope.list1)%3}==0">
 			<br><br>
 		</c:if>
 	</c:forEach>
