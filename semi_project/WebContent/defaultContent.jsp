@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,7 +9,7 @@
 <title>Insert title here</title>
 <style>
 	#content1{width:800px;height:1000px;background-color:white;margin-left:150px;}
-	.items{width:100px;height:120px;border:1px solid black;border-radious:2px;margin-rigth:50px;}
+	.items{width:100px;height:120px;border:1px solid black;border-radious:2px;margin-rigth:50px;float:left;}
 	img{width:40px;height:50px;border-radious:2px}
 	
 	
@@ -19,10 +20,13 @@
 <body>
 <div id="content1">
 	<c:forEach var="list1" items="${requestScope.list1 }">
-		<div class="items">
+		<div class="items" align="center">
 			<a href="/mainController.do?cmd=itemPage&$item=${list1.name}"><img src="${list1.itemImgRoot }"></a><br>
-			<a href="/mainController.do?cmd=itemPage&$item=${list1.name}">${list1.name}</a><br>
+			<a href="/mainController.do?cmd=itemPage&$item=${list1.name}">${list1.name}</a>
 		</div>
+		<c:if test="${fn:length(requestScope.list1 % 3)}==0">
+			<br><br>
+		</c:if>
 	</c:forEach>
 </div>
 </body>
