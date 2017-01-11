@@ -18,9 +18,11 @@ public class MainController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String cmd=req.getParameter("cmd");
+		System.out.println(cmd);
 		if(cmd.equals("itemChange")){
 			int startNum=1;
 			String sendNum=req.getParameter("num");
+			System.out.println(sendNum);
 			if(sendNum!=null){
 				startNum=Integer.parseInt(sendNum);
 			}

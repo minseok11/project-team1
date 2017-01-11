@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 <style type="text/css">
 	#wrap{width:1300px;height:1600px}
-	#header{width:1100px;height:250px;background-color:pink;margin-left:100px;}
+	#header{width:1100px;height:100px;background-color:pink;margin-left:100px;}
 	#category{width:1100px;height:100px;background-color:gold;margin-left:100px;}
-	#content{width:1100px;height:1000px;background-color:yellow;margin-left:100px;}
-	#footer{width:1100px;height:250px;background-color:gray;margin-left:100px;}
+	#content{width:1100px;height:1500px;background-color:yellow;margin-left:100px;}
+	#footer{width:1100px;height:150px;background-color:gray;margin-left:100px;}
 </style>
 </head>
 <body>
@@ -22,7 +22,7 @@
 	<jsp:include page="/defaultCategory.jsp"/>
 	</div>
 	<div id="content">
-	<jsp:include page="${requestScope.content }"/>
+	 <jsp:include page="${requestScope.content }"/>
 	</div>
 	<div id="footer">
 	<jsp:include page="/footer.jsp"/>

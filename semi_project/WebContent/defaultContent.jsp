@@ -9,10 +9,10 @@
 <title>Insert title here</title>
 <style>
 	@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-	#content1{width:1000px;height:1000px;background-color:white;margin-left:50px;}
-	.items{width:300px;height:350px;border:1px solid black;border-radious:2px;margin-rigth:50px;float:left;margin-left:20px;margin-top:50px;}
+	#choice{width:1000px;height:50px;background-color:white;margin-left:50px;padding-top:50px;}
+	#content1{width:1000px;height:900px;background-color:white;margin-left:50px;}
 	img{width:240px;height:280px;border-radious:2px;margin-top:15px;}
-	.a{font-size:30px;font-family:'Nanum Pen Script';text-decoration:none}
+	a{font-size:30px;font-family:'Nanum Pen Script';text-decoration:none;color:black}
 	
 </style>
 <script type="text/javascript">
@@ -20,23 +20,35 @@
 	function lChange(n){
 		xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=doChange;
-		xhr.open("get", "/mainController.do?cmd=itemChange&sendNum='n'", true);
+		xhr.open("get", "/mainController.do?cmd=itemChange&num="+n, true);
 		xhr.send();
 	}
 	function doChange(){
 		if(xhr.readyState==4&&xhr.status==200){
 			var xml=xhr.responseXML;
 			var div=document.getElementById("content1");
-			var item=xml.getElementsByTagName(item).length;
-			var img=document.createElement("img");
-			var divC=document.createElement("div");
-			for(var i=0;i<item;i++){
+			var item=xml.getElementsByTagName("item");
+			while(div.hasChildNodes()){ 
+				div.removeChild( div.lastChild );
+			}
+			for(var i=0;i<item.length;i++){
+				var img=document.createElement("img");
+				var divC=document.createElement("div");
+				divC.style.width="300px";
+				divC.style.height="350px";
+				divC.style.border="1px solid black";
+				divC.style.borderRadious="2px";
+				divC.style.marginRigth="50px";
+				divC.style.float="left";
+				divC.style.marginLeft="20px";
+				divC.style.marginTop="50px";
+				divC.style.textAlign="center";
 				var code=xml.getElementsByTagName("code")[i].firstChild.nodeValue;
 				var itemImgRoot=xml.getElementsByTagName("itemImgRoot")[i].firstChild.nodeValue;
 				var name=xml.getElementsByTagName("name")[i].firstChild.nodeValue;
-				img.src=itemImgRoot;
-				divC.innerHTML="<a href=\"mainController.do?cmd=itemPage&$itemCode=\"+'code'>"+img+"</a><br><br>"
-						+"<a href=\"/mainController.do?cmd=itemPage&$itemCode=\"+'code'>"+name+"</a>";
+				divC.innerHTML="<a href=/mainController.do?cmd=itemPage&$itemCode="+code+"><img src="+itemImgRoot+"></a><br><br>"
+						+"<a href=/mainController.do?cmd=itemPage&$itemCode="+code+">"+name+"</a>";
+				div.appendChild(divC);
 			}
 		}
 	}
@@ -44,21 +56,11 @@
 </script>
 </head>
 <body>
-<div id="content1">
-	<a href="javascript:lChange(1)">☆</a>
-	<a href="javascript:lChange(7)">☆</a>
-	<a href="javascript:lChange(13)">☆</a>
-	<%--
-	<c:forEach var="list1" items="${requestScope.list1 }">
-		<div class="items" align="center">
-			<a href="/mainController.do?cmd=itemPage&$itemCode=${list1.code}"><img src="${list1.itemImgRoot }"></a><br><br>
-			<a class="a" href="/mainController.do?cmd=itemPage&$itemCode=${list1.code}">${list1.name}</a>
-		</div>
-		<c:if test="${fn:length(requestScope.list1)%3}==0">
-			<br><br>
-		</c:if>
-	</c:forEach>
-	 --%>
+<div id="choice" align="center">
+	<a href="javascript:lChange(1)">●</a>
+	<a href="javascript:lChange(7)">●</a>
+	<a href="javascript:lChange(13)">●</a>
 </div>
+<div id="content1"></div>
 </body>
 </html>

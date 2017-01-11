@@ -38,7 +38,7 @@ public class Starter extends HttpServlet{
 		ArrayList<ItemDTO> list1=dao1.mainList(startNum, endNum);
 		req.setAttribute("list1", list1);
 */
-		req.getRequestDispatcher("/index.jsp").forward(req, res);
+		req.getRequestDispatcher("/index1.jsp").forward(req, res);
 		
 	}
 }

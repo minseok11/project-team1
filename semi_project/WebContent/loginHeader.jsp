@@ -7,14 +7,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	ul li{float:left}
+	#headMenu{width:300px;height:100px;float:right;}
+	ul{list-style:none;}
+	ul li{float:left;margin-left:15px;margin-top:15px;}
+	a{text-decoration: none}
 </style>
 </head>
 <body>
+<div id="headMenu">
 <ul>
 	<li><a href="/logout.do">로그아웃</a></li>
 	<li><a href="/basket.do">장바구니</a></li>
 	<li><a href="/support.do">고객센터</a></li>
 </ul>
+</div>
 </body>
 </html>
