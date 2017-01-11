@@ -10,7 +10,7 @@ import jdbc.util.jdbcUtil;
 import shopping.dto.CategoryDTO;
 import shopping.dto.ItemDTO;
 
-public class itemDao {
+public class ItemDao {
 	public int insert(ItemDTO dto){
 		Connection con=null;
 		PreparedStatement pst=null;

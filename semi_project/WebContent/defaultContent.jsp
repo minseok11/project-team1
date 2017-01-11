@@ -16,10 +16,39 @@
 	
 </style>
 <script type="text/javascript">
+	var xhr=null;
+	function lChange(n){
+		xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=doChange;
+		xhr.open("get", "/mainController.do?cmd=itemChange&sendNum='n'", true);
+		xhr.send();
+	}
+	function doChange(){
+		if(xhr.readyState==4&&xhr.status==200){
+			var xml=xhr.responseXML;
+			var div=document.getElementById("content1");
+			var item=xml.getElementsByTagName(item).length;
+			var img=document.createElement("img");
+			var divC=document.createElement("div");
+			for(var i=0;i<item;i++){
+				var code=xml.getElementsByTagName("code")[i].firstChild.nodeValue;
+				var itemImgRoot=xml.getElementsByTagName("itemImgRoot")[i].firstChild.nodeValue;
+				var name=xml.getElementsByTagName("name")[i].firstChild.nodeValue;
+				img.src=itemImgRoot;
+				divC.innerHTML="<a href=\"mainController.do?cmd=itemPage&$itemCode=\"+'code'>"+img+"</a><br><br>"
+						+"<a href=\"/mainController.do?cmd=itemPage&$itemCode=\"+'code'>"+name+"</a>";
+			}
+		}
+	}
+	onload=lChange(1);
 </script>
 </head>
 <body>
 <div id="content1">
+	<a href="javascript:lChange(1)">☆</a>
+	<a href="javascript:lChange(7)">☆</a>
+	<a href="javascript:lChange(13)">☆</a>
+	<%--
 	<c:forEach var="list1" items="${requestScope.list1 }">
 		<div class="items" align="center">
 			<a href="/mainController.do?cmd=itemPage&$itemCode=${list1.code}"><img src="${list1.itemImgRoot }"></a><br><br>
@@ -29,6 +58,7 @@
 			<br><br>
 		</c:if>
 	</c:forEach>
+	 --%>
 </div>
 </body>
 </html>

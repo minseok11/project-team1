@@ -12,7 +12,7 @@
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
 	<x>-252</x>
-	<y>7</y>
+	<y>61</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2017-01-06 14:10:10</creation_date>
-			<updated_date>2017-01-11 14:04:15</updated_date>
+			<updated_date>2017-01-11 14:11:48</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>

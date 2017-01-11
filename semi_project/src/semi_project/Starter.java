@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import shopping.dao.CategoryDao;
-import shopping.dao.itemDao;
+import shopping.dao.ItemDao;
 import shopping.dto.CategoryDTO;
 import shopping.dto.ItemDTO;
 @WebServlet("/starter.do")
@@ -28,9 +28,16 @@ public class Starter extends HttpServlet{
 		CategoryDao dao=new CategoryDao();
 		ArrayList<CategoryDTO> list=dao.list();
 		req.setAttribute("list",list);
-		itemDao dao1=new itemDao();
-		ArrayList<ItemDTO> list1=dao1.list();
+/*		int startNum=1;
+		String sendNum=req.getParameter("num");
+		if(sendNum!=null){
+			startNum=Integer.parseInt(sendNum);
+		}
+		int endNum=startNum+5;
+		ItemDao dao1=new ItemDao();
+		ArrayList<ItemDTO> list1=dao1.mainList(startNum, endNum);
 		req.setAttribute("list1", list1);
+*/
 		req.getRequestDispatcher("/index.jsp").forward(req, res);
 		
 	}
