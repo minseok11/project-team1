@@ -24,20 +24,14 @@ public class Starter extends HttpServlet{
 		}else{
 			req.setAttribute("head", "/loginHeader.jsp");
 		}
-		req.setAttribute("content", "/defaultContent.jsp");
+		if(req.getParameter("content")==null){
+			req.setAttribute("content", "/defaultContent.jsp");
+		}else{
+			req.setAttribute("content",req.getParameter("content"));
+		}
 		CategoryDao dao=new CategoryDao();
 		ArrayList<CategoryDTO> list=dao.list();
 		req.setAttribute("list",list);
-/*		int startNum=1;
-		String sendNum=req.getParameter("num");
-		if(sendNum!=null){
-			startNum=Integer.parseInt(sendNum);
-		}
-		int endNum=startNum+5;
-		ItemDao dao1=new ItemDao();
-		ArrayList<ItemDTO> list1=dao1.mainList(startNum, endNum);
-		req.setAttribute("list1", list1);
-*/
 		req.getRequestDispatcher("/index1.jsp").forward(req, res);
 		
 	}

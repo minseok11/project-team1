@@ -2,14 +2,16 @@ package shopping.dto;
 
 public class QAboardDTO {
 	int num;
+	int refNum;
 	String title;
 	String content;
 	String id;
 	String qaList;
 	public QAboardDTO(){}
-	public QAboardDTO(int num, String title, String content, String id, String qaList) {
+	public QAboardDTO(int num, int refNum, String title, String content, String id, String qaList) {
 		super();
 		this.num = num;
+		this.refNum=refNum;
 		this.title = title;
 		this.content = content;
 		this.id = id;
@@ -20,6 +22,12 @@ public class QAboardDTO {
 	}
 	public void setNum(int num) {
 		this.num = num;
+	}
+	public int getRefNum(){
+		return refNum;
+	}
+	public void setRefNum(int refNum){
+		this.refNum=refNum;
 	}
 	public String getTitle() {
 		return title;

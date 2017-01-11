@@ -39,4 +39,36 @@ public class CustomerInfoDao {
 			return null;
 		}
 	}
+	public ArrayList<CustomerInfoDTO> listUp(String id){
+        Connection con=null;
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        try{
+           con=jdbcUtil.getConn();
+           String sql="select * from CUSTOMERINFO where id=?";
+           pstmt=con.prepareStatement(sql);
+           pstmt.setString(1, id);
+           rs=pstmt.executeQuery();
+           ArrayList<CustomerInfoDTO> list=new ArrayList<>();
+           if(rs.next()){
+        	   String password=rs.getString(2);
+        	   String qesList=rs.getString(3);
+        	   String ans=rs.getString(4);
+        	   String name=rs.getString(5);
+        	   String gender=rs.getString(6);
+        	   String email=rs.getString(7);
+        	   String phoneNo=rs.getString(8);
+        	   String adress=rs.getString(9);
+        	   String postNo=rs.getString(10);
+        	   CustomerInfoDTO dto=new CustomerInfoDTO(id, password, qesList, ans, name, gender, email, phoneNo, adress, postNo);
+        	   list.add(dto);
+           }
+           return list;
+        }catch(SQLException se){
+           System.out.println(se.getMessage());
+           return null;
+        }finally{
+           jdbcUtil.close(rs, pstmt, con);
+        }
+     }
 }

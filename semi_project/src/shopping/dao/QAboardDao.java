@@ -23,16 +23,39 @@ public class QAboardDao {
 			ArrayList<QAboardDTO> list=new ArrayList<>();
 			while(rs.next()){
 				QAboardDTO dto=new QAboardDTO(rs.getInt("num"),
-						rs.getString("title"),
-						rs.getString("content"),
-						rs.getString("id"),
-						rs.getString("qaList"));
+				rs.getInt("refnum"),
+				rs.getString("title"),
+				rs.getString("content"),
+				rs.getString("id"),
+				rs.getString("qaList"));
 				list.add(dto);
 			}
 			return list;
 		}catch(SQLException se){
 			System.out.println(se.getMessage());
 			return null;
+		}
+	}
+	public int insert(QAboardDTO dto){
+		Connection con=null;
+		PreparedStatement pst=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="insert into qaboard values(?,?,?,?,?,?)";
+			pst=con.prepareStatement(sql);
+			pst.setInt(1, dto.getNum());
+			pst.setInt(2, dto.getRefNum());
+			pst.setString(3, dto.getTitle());
+			pst.setString(4, dto.getContent());
+			pst.setString(5, dto.getId());
+			pst.setString(6, dto.getQaList());
+			int result=pst.executeUpdate();
+			return result;
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return -1;
+		}finally{
+			jdbcUtil.close(null, pst, con);
 		}
 	}
 }

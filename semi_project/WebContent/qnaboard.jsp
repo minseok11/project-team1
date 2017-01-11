@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-<form method="post" action="/"></form>
+<form method="post" action="/QAController.do"></form>
 문의항목<select>
 	<option value="취소문의">취소문의</option>
 	<option value="쿠폰문의">쿠폰문의</option>

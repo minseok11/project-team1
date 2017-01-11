@@ -18,11 +18,9 @@ public class MainController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String cmd=req.getParameter("cmd");
-		System.out.println(cmd);
 		if(cmd.equals("itemChange")){
 			int startNum=1;
 			String sendNum=req.getParameter("num");
-			System.out.println(sendNum);
 			if(sendNum!=null){
 				startNum=Integer.parseInt(sendNum);
 			}
@@ -31,6 +29,7 @@ public class MainController extends HttpServlet{
 			ArrayList<ItemDTO> list1=dao1.mainList(startNum, endNum);
 			Iterator<ItemDTO> it=list1.iterator();
 			PrintWriter pw=res.getWriter();
+			res.setCharacterEncoding("utf-8");
 			res.setContentType("text/xml;charset=utf-8");
 			pw.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 			pw.println("<data>");
