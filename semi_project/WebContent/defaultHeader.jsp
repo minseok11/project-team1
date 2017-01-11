@@ -7,8 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	ul{list-style:none;float:left}
-	ul li{float:left;margin-left:15px;}
+	ul{list-style:none;}
+	ul li{float:left;margin-left:15px;margin-top:15px;}
+	a{text-decoration: none}
 </style>
 </head>
 <body>

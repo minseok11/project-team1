@@ -27,7 +27,6 @@ public class Starter extends HttpServlet{
 		CategoryDao dao=new CategoryDao();
 		ArrayList<CategoryDTO> list=dao.list();
 		req.setAttribute("list",list);
-		
 		req.getRequestDispatcher("/index.jsp").forward(req, res);
 		
 	}
