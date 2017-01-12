@@ -136,4 +136,59 @@ public class ItemDao {
 			jdbcUtil.close(rs, pst, con);
 		}
 	}
+	public ArrayList<ItemDTO> cateList(int startNum,int endNum,String cate){
+		Connection con=null;
+		PreparedStatement pst=null;
+		ResultSet rs=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="select * from(select a.*,rownum r from (select * from item where categorylist=?)a) where r>=? and r<=?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, cate);
+			pst.setInt(2, startNum);
+			pst.setInt(3, endNum);
+			rs=pst.executeQuery();
+			ArrayList<ItemDTO> list=new ArrayList();
+			while(rs.next()){
+				String code=rs.getString(1);
+				int price=rs.getInt(2);
+				int inventory=rs.getInt(3);
+				String name=rs.getString(4);
+				int retailPrice=rs.getInt(5);
+				String itemImgRoot=rs.getString(6);
+				String categoryList=rs.getString(7);
+				String supplier=rs.getString(8);
+				ItemDTO dto=new ItemDTO(code, price, inventory, name, retailPrice, itemImgRoot, categoryList, supplier);
+				list.add(dto);
+			}
+			return list;
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return null;
+		}finally{
+			jdbcUtil.close(rs, pst, con);
+		}
+	}
+	public int getCount(String cate){
+		Connection con=null;
+		PreparedStatement pst=null;
+		ResultSet rs=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="select count(code) from item group by categorylist having categorylist=?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, cate);
+			rs=pst.executeQuery();
+			if(rs.next()){
+				return rs.getInt(1);
+			}else{
+				return 0;
+			}
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return -1;
+		}finally{
+			jdbcUtil.close(rs, pst, con);
+		}
+	}
 }

@@ -28,9 +28,8 @@ public class MainController extends HttpServlet{
 			ItemDao dao1=new ItemDao();
 			ArrayList<ItemDTO> list1=dao1.mainList(startNum, endNum);
 			Iterator<ItemDTO> it=list1.iterator();
-			PrintWriter pw=res.getWriter();
-			res.setCharacterEncoding("utf-8");
 			res.setContentType("text/xml;charset=utf-8");
+			PrintWriter pw=res.getWriter();
 			pw.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 			pw.println("<data>");
 			while(it.hasNext()){

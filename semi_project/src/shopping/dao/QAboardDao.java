@@ -41,14 +41,12 @@ public class QAboardDao {
 		PreparedStatement pst=null;
 		try{
 			con=jdbcUtil.getConn();
-			String sql="insert into qaboard values(?,?,?,?,?,?)";
+			String sql="insert into qaboard values(SEQ_BOARD_BOARDNUM.nextval,SEQ_BOARD_BOARDNUM.currval,?,?,?,?)";
 			pst=con.prepareStatement(sql);
-			pst.setInt(1, dto.getNum());
-			pst.setInt(2, dto.getRefNum());
-			pst.setString(3, dto.getTitle());
-			pst.setString(4, dto.getContent());
-			pst.setString(5, dto.getId());
-			pst.setString(6, dto.getQaList());
+			pst.setString(1, dto.getTitle());
+			pst.setString(2, dto.getContent());
+			pst.setString(3, dto.getId());
+			pst.setString(4, dto.getQaList());
 			int result=pst.executeUpdate();
 			return result;
 		}catch(SQLException se){
@@ -56,6 +54,60 @@ public class QAboardDao {
 			return -1;
 		}finally{
 			jdbcUtil.close(null, pst, con);
+		}
+	}
+	public ArrayList<QAboardDTO> listUp(String id,int startNum,int endNum){
+		Connection con=null;
+		PreparedStatement pst=null;
+		ResultSet rs=null;
+		try{
+			con=jdbcUtil.getConn();
+			
+			String sql="select * from (select se.*,rownum r from (select * from qaboard where id=? order by refnum desc,num asc)se) where r>=? and r<=?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, id);
+			pst.setInt(2, startNum);
+			pst.setInt(3, endNum);
+			ArrayList<QAboardDTO> list=new ArrayList<>();
+			rs=pst.executeQuery();
+			while(rs.next()){
+				int num=rs.getInt(1);
+				int refNum=rs.getInt(2);
+				String title=rs.getString(3);
+				String content=rs.getString(4);
+				String qaList=rs.getString(6);
+				QAboardDTO dto=new QAboardDTO(num, refNum, title, content, id, qaList);
+				list.add(dto);
+			}
+			return list;
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return null;
+			
+		}finally{
+			jdbcUtil.close(rs, pst, con);
+		}
+	}
+	public int getCount(String id){
+		Connection con=null;
+		PreparedStatement pst=null;
+		ResultSet rs=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="select count(num) from qaboard group by id having id=?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, id);
+			rs=pst.executeQuery();
+			if(rs.next()){
+				return rs.getInt(1);
+			}else{
+				return 0;
+			}
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return -1;
+		}finally{
+			jdbcUtil.close(rs, pst, con);
 		}
 	}
 }

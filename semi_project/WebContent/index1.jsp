@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Adult Toy에 오신것을 환영합니다♥</title>
 <style type="text/css">
 	#wrap{width:1300px;height:1600px}
 	#header{width:1100px;height:100px;background-color:pink;margin-left:100px;}

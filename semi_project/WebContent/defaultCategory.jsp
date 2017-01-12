@@ -20,7 +20,7 @@
 <div id="category1" align="center">
 	<c:forEach var="list" items="${requestScope.list }">
 	
-		<a class="cateName" href="/mainController.do?cmd=itemPage&$item=${list.categoryList}">${list.categoryList}</a>
+		<a class="cateName" href="/itemController.do?cate=${list.categoryList}">${list.categoryList}</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	</c:forEach>
 </div>

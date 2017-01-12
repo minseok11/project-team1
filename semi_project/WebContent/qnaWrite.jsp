@@ -12,7 +12,7 @@
 </head>
 <body>
 <form method="post" action="/QAController.do"></form>
-문의항목<select>
+문의항목<select name="qaList">
 	<option value="취소문의">취소문의</option>
 	<option value="쿠폰문의">쿠폰문의</option>
 	<option value="교환문의">교환문의</option>
@@ -24,10 +24,9 @@
 </select><br><br>
 <div id="1">
 답변받으실분<br>
-성명<input type="text" value="${requestScope.name }" disabled="disabled">
-<input type="hidden" value="${requestScope.name }" name="name"><br>
-이메일<input type="text" value="${requestScope.email }" name="email"><br>
-연락처<input type="text" value="${requestScope.phone }" name="phone"><br>
+성명<input type="text" value="${requestScope.name }" disabled="disabled"><br>
+이메일<input type="text" value="${requestScope.email }" disabled="disabled"><br>
+연락처<input type="text" value="${requestScope.phone }" disabled="disabled"><br>
 </div>
 <div id="2">
 문의하기<br>

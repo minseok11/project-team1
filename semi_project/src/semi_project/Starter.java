@@ -24,14 +24,19 @@ public class Starter extends HttpServlet{
 		}else{
 			req.setAttribute("head", "/loginHeader.jsp");
 		}
-		if(req.getParameter("content")==null){
+		if(req.getAttribute("content")==null){
 			req.setAttribute("content", "/defaultContent.jsp");
 		}else{
-			req.setAttribute("content",req.getParameter("content"));
+			req.setAttribute("content",req.getAttribute("content"));
 		}
+		
 		CategoryDao dao=new CategoryDao();
 		ArrayList<CategoryDTO> list=dao.list();
 		req.setAttribute("list",list);
+/*		req.setAttribute("list3", req.getAttribute("list3"));
+		req.setAttribute("startPage", req.getAttribute("startPage"));
+		req.setAttribute("endPage", req.getAttribute("endPage"));
+		req.setAttribute("pageCount",req.getAttribute("pageCount"));*/
 		req.getRequestDispatcher("/index1.jsp").forward(req, res);
 		
 	}

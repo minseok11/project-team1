@@ -37,7 +37,7 @@
 				divC.style.width="300px";
 				divC.style.height="350px";
 				divC.style.border="1px solid black";
-				divC.style.borderRadious="2px";
+				divC.style.borderRadius="5px";
 				divC.style.marginRigth="50px";
 				divC.style.float="left";
 				divC.style.marginLeft="20px";
