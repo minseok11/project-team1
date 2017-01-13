@@ -19,8 +19,8 @@
 <div id="content1">
 	<c:forEach var="list2" items="${requestScope.list3 }">
 		<div class="titleBox">
-		<a href="/starter.do?content=/itemDetail.jsp&code=${list2.code }"><img src="${list2.itemImgRoot }"></a><br><br>
-		<a href="/starter.do?content=/itemDetail.jsp&code=${list2.code }">${list2.name }</a>
+		<a href="/itemDetail.do?code=${list2.code }"><img src="${list2.itemImgRoot }"></a><br><br>
+		<a href="/itemDetail.do?code=${list2.code }">${list2.name }</a>
 		</div>
 	</c:forEach>
 </div>

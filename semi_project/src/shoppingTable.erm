@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
-	<x>194</x>
-	<y>53</y>
+	<x>-252</x>
+	<y>0</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -32,7 +32,7 @@
 		<notation></notation>
 		<notation_level>0</notation_level>
 		<notation_expand_group>true</notation_expand_group>
-		<view_mode>1</view_mode>
+		<view_mode>0</view_mode>
 		<outline_view_mode>1</outline_view_mode>
 		<view_order_by>1</view_order_by>
 		<auto_ime_change>false</auto_ime_change>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2017-01-06 14:10:10</creation_date>
-			<updated_date>2017-01-11 19:48:06</updated_date>
+			<updated_date>2017-01-13 11:48:27</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>

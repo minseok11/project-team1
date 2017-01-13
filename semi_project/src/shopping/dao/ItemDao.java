@@ -191,4 +191,34 @@ public class ItemDao {
 			jdbcUtil.close(rs, pst, con);
 		}
 	}
+	public ItemDTO itemDetail(String code){
+		Connection con=null;
+		PreparedStatement pst=null;
+		ResultSet rs=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="select * from item where code=?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, code);
+			rs=pst.executeQuery();
+			if(rs.next()){
+				int price=rs.getInt(2);
+				int inventory=rs.getInt(3);
+				String name=rs.getString(4);
+				int retailPrice=rs.getInt(5);
+				String itemImgRoot=rs.getString(6);
+				String categoryList=rs.getString(7);
+				String supplier=rs.getString(8);
+				ItemDTO dto=new ItemDTO(code, price, inventory, name, retailPrice, itemImgRoot, categoryList, supplier);
+				return dto;
+			}else{
+				return null;
+			}
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return null;
+		}finally{
+			jdbcUtil.close(rs,pst,con);
+		}
+	}
 }

@@ -37,6 +37,8 @@ public class CustomerInfoDao {
 		}catch(SQLException se){
 			System.out.println(se.getMessage());
 			return null;
+		}finally{
+			jdbcUtil.close(rs, pst, con);
 		}
 	}
 	public ArrayList<CustomerInfoDTO> listUp(String id){
