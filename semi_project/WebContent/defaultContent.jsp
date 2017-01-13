@@ -46,8 +46,8 @@
 				var code=xml.getElementsByTagName("code")[i].firstChild.nodeValue;
 				var itemImgRoot=xml.getElementsByTagName("itemImgRoot")[i].firstChild.nodeValue;
 				var name=xml.getElementsByTagName("name")[i].firstChild.nodeValue;
-				divC.innerHTML="<a href=/mainController.do?cmd=itemPage&$itemCode="+code+"><img src="+itemImgRoot+"></a><br><br>"
-						+"<a href=/mainController.do?cmd=itemPage&$itemCode="+code+">"+name+"</a>";
+				divC.innerHTML="<a href=/itemDetail.do?code="+code+"><img src="+itemImgRoot+"></a><br><br>"
+						+"<a href=/itemDetail.do?code="+code+">"+name+"</a>";
 				div.appendChild(divC);
 			}
 		}

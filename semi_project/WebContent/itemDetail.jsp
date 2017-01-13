@@ -9,8 +9,9 @@
 <style>
 	#allPage{width:1100px;height:1500px;background-color:yellow;overflow: auto;}
 	#itemImg{width:600px;height:600px;background-color: blue;float:left}
-	#itemOption{width:450px;height:600px;background-color: red;float:left}
-	#itemInfoImg1{width:800px;height:1000px;background-color:pink;float:left}
+	#itemOption{width:450px;height:600px;background-color: red;float:left;}
+	#itemInfoImg1{width:1050px;height:1200px;background-color:pink;float:left;}
+	#itemImage{width:580px;height:580px;margin-top:10px;}
 	
 </style>
 <script>
@@ -19,22 +20,22 @@
 		var itemCount=document.getElementsByName("itemCount")[0].value;
 		var totalPrice=document.getElementsByName("totalPrice");
 		totalPrice[0].value=itemPrice*itemCount;
-		
 	}
 	function dTransfer(url){
 		var form=document.getElementById("frm");
 		form.method="post";
-		form.action="url";
-		form.submit;
+		form.action=url;
+		form.submit();
 	}
 </script>
 </head>
 <body>
 <div id="allPage">
-<div id="itemImg"><img src="${requestScope.itemImgRoot}"></div>
+<div id="itemImg" align="center"><img src="${requestScope.itemImgRoot}" id="itemImage"></div>
 <div id="itemOption" align="center">
 	<form id="frm">	
-		<p>상품명:${requestScope.name }</p>
+		<br><br><br><br><br>
+		<p>상품명:${requestScope.name }
 		<p>상품가격:${requestScope.price }</p>
 		<input type="hidden" value="${requestScope.code }" name="itemCode">
 		<input type="hidden" value="${requestScope.price }" name="itemPrice">
@@ -47,10 +48,13 @@
 		<p>수량</p>
 		<input type="text" name="itemCount" size="5" onchange="cal()"><br>
 		<p>합계금액</p>
-		<input type="text" name="totalPrice" size="5" readonly="readonly"><br><br><br>
-		<input type="button" value="즉시구매" id="buyItem" onclick="dTransfer(/itemBuy.do)">&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="장바구니" id="basket" onclick="dTransfer(/basket.do)">&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="찜하기" id="jjim" onclick="dTransfer(/jjim.do)">
+		<input type="text" name="totalPrice" size="5" readonly="readonly"><br><br>
+		<br>
+		<p>배송비 : 무료</p>
+		<br>
+		<input type="image" value="즉시구매" src="/images/buy.gif" id="buyItem" onclick="dTransfer('/itemBuy.do')">&nbsp;
+		<input type="image" value="장바구니" src="/images/basket.gif" id="basket" onclick="dTransfer('/basket.do')">&nbsp;
+		<input type="image" value="찜하기" src="/images/love.gif" id="jjim" onclick="dTransfer('/jjim.do')">
 	</form>
 </div>
 <div id="itemInfoImg1"></div>
