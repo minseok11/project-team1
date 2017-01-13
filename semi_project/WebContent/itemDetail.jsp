@@ -48,8 +48,8 @@
 		<input type="text" name="itemCount" size="5" onchange="cal()"><br>
 		<p>합계금액</p>
 		<input type="text" name="totalPrice" size="5" readonly="readonly"><br><br><br>
-		<input type="button" value="즉시구매" id="buyItem" onclick="dTransfer(/itemBuy.do)">&nbsp;&nbsp;&nbsp;
-		<input type="button" value="장바구니" id="basket" onclick="dTransfer(/basket.do)">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="즉시구매" id="buyItem" onclick="dTransfer(/itemBuy.do)">&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="장바구니" id="basket" onclick="dTransfer(/basket.do)">&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" value="찜하기" id="jjim" onclick="dTransfer(/jjim.do)">
 	</form>
 </div>
