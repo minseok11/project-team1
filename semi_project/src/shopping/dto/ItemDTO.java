@@ -7,11 +7,12 @@ public class ItemDTO {
 	String name;
 	int retailPrice;
 	String itemImgRoot;
+	String detailImg;
 	String categoryList;
 	String supplier;
 	public ItemDTO(){}
 	public ItemDTO(String code, int price, int inventory, String name, int retailPrice,
-			String itemImgRoot, String categoryList, String supplier) {
+			String itemImgRoot,String detailImg, String categoryList, String supplier) {
 		super();
 		this.code = code;
 		this.price = price;
@@ -19,8 +20,15 @@ public class ItemDTO {
 		this.name = name;
 		this.retailPrice = retailPrice;
 		this.itemImgRoot = itemImgRoot;
+		this.detailImg=detailImg;
 		this.categoryList = categoryList;
 		this.supplier=supplier;
+	}
+	public String getDetailImg(){
+		return detailImg;
+	}
+	public void setDetailImg(String detailImg){
+		this.detailImg=detailImg;
 	}
 	public String getSupplier(){
 		return supplier;

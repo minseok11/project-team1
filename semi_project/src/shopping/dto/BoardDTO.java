@@ -6,14 +6,16 @@ public class BoardDTO {
 	String content;
 	String id;
 	String code;
+	String imgName;
 	public BoardDTO(){}
-	public BoardDTO(int boardNum, String title, String content, String id, String code) {
+	public BoardDTO(int boardNum, String title, String content, String id, String code,String imgName) {
 		super();
 		this.boardNum = boardNum;
 		this.title = title;
 		this.content = content;
 		this.id = id;
 		this.code = code;
+		this.imgName=imgName;
 	}
 	public int getBoardNum() {
 		return boardNum;
@@ -26,6 +28,12 @@ public class BoardDTO {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getImgName() {
+		return imgName;
+	}
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
 	}
 	public String getContent() {
 		return content;

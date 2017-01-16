@@ -16,7 +16,7 @@ public class ItemDao {
 		PreparedStatement pst=null;
 		try{
 			con=jdbcUtil.getConn();
-			String sql="insert into item values(?,?,?,?,?,?,?,?)";
+			String sql="insert into item values(?,?,?,?,?,?,?,?,?)";
 			pst=con.prepareStatement(sql);
 			pst.setString(1, dto.getCode());
 			pst.setInt(2, dto.getPrice());
@@ -24,8 +24,9 @@ public class ItemDao {
 			pst.setString(4, dto.getName());
 			pst.setInt(5, dto.getRetailPrice());
 			pst.setString(6, dto.getItemImgRoot());
-			pst.setString(7, dto.getCategoryList());
-			pst.setString(8, dto.getSupplier());
+			pst.setString(7, dto.getDetailImg());
+			pst.setString(8, dto.getCategoryList());
+			pst.setString(9, dto.getSupplier());
 			System.out.println(dto.getItemImgRoot());
 			System.out.println(dto.getCategoryList());
 			int n=pst.executeUpdate();
@@ -67,6 +68,7 @@ public class ItemDao {
 						rs.getString("name"), 
 						rs.getInt("retailPrice"),
 						rs.getString("itemImgRoot"),
+						rs.getString("detailImg"),
 						rs.getString("categoryList"),
 						rs.getString("supplier"));
 				list.add(dto);
@@ -94,6 +96,7 @@ public class ItemDao {
 							rs.getString("name"), 
 							rs.getInt("retailPrice"),
 							rs.getString("itemImgRoot"),
+							rs.getString("detailImg"),
 							rs.getString("categoryList"),
 							rs.getString("supplier"));
 				list.add(dto);
@@ -123,9 +126,10 @@ public class ItemDao {
 				String name=rs.getString(4);
 				int retailPrice=rs.getInt(5);
 				String itemImgRoot=rs.getString(6);
-				String categoryList=rs.getString(7);
-				String supplier=rs.getString(8);
-				ItemDTO dto=new ItemDTO(code, price, inventory, name, retailPrice, itemImgRoot, categoryList, supplier);
+				String detailImg=rs.getString(7);
+				String categoryList=rs.getString(8);
+				String supplier=rs.getString(9);
+				ItemDTO dto=new ItemDTO(code, price, inventory, name, retailPrice, itemImgRoot,detailImg ,categoryList, supplier);
 				list.add(dto);
 			}
 			return list;
@@ -156,9 +160,10 @@ public class ItemDao {
 				String name=rs.getString(4);
 				int retailPrice=rs.getInt(5);
 				String itemImgRoot=rs.getString(6);
-				String categoryList=rs.getString(7);
-				String supplier=rs.getString(8);
-				ItemDTO dto=new ItemDTO(code, price, inventory, name, retailPrice, itemImgRoot, categoryList, supplier);
+				String detailImg=rs.getString(7);
+				String categoryList=rs.getString(8);
+				String supplier=rs.getString(9);
+				ItemDTO dto=new ItemDTO(code, price, inventory, name, retailPrice, itemImgRoot,detailImg, categoryList, supplier);
 				list.add(dto);
 			}
 			return list;
@@ -207,9 +212,10 @@ public class ItemDao {
 				String name=rs.getString(4);
 				int retailPrice=rs.getInt(5);
 				String itemImgRoot=rs.getString(6);
-				String categoryList=rs.getString(7);
-				String supplier=rs.getString(8);
-				ItemDTO dto=new ItemDTO(code, price, inventory, name, retailPrice, itemImgRoot, categoryList, supplier);
+				String detailImg=rs.getString(7);
+				String categoryList=rs.getString(8);
+				String supplier=rs.getString(9);
+				ItemDTO dto=new ItemDTO(code, price, inventory, name, retailPrice, itemImgRoot, detailImg,categoryList, supplier);
 				return dto;
 			}else{
 				return null;
