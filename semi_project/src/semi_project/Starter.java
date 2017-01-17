@@ -2,6 +2,7 @@ package semi_project;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ScheduledExecutorService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,11 +32,9 @@ public class Starter extends HttpServlet{
 		}else{
 			req.setAttribute("content",req.getAttribute("content"));
 		}
-		
 		CategoryDao dao=new CategoryDao();
 		ArrayList<CategoryDTO> list=dao.list();
 		req.setAttribute("list",list);
 		req.getRequestDispatcher("/index1.jsp").forward(req, res);
-		
 	}
 }

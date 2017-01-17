@@ -40,7 +40,7 @@ public class BoardDao {
 		ResultSet rs=null;
 		try{
 			con=jdbcUtil.getConn();
-			String sql="select count(boardnum),code from board group by code having code=?";
+			String sql="select count(boardnum) from board group by code having code = ? ";
 			pst=con.prepareStatement(sql);
 			pst.setString(1, code);
 			rs=pst.executeQuery();
@@ -83,7 +83,62 @@ public class BoardDao {
 		}catch(SQLException se){
 			System.out.println(se.getMessage());
 			return null;
+		}finally{
+			jdbcUtil.close(rs, pst, con);
+		}
 			
+	}
+	public int delete(int boardNum){
+		Connection con=null;
+		PreparedStatement pst=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="delete board where boardNum=?";
+			pst=con.prepareStatement(sql);
+			pst.setInt(1, boardNum);
+			int result=pst.executeUpdate();
+			return result;
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return -1;
+		}finally{
+			jdbcUtil.close(null, pst, con);
+		}
+	}
+	public String findImg(int boardNum){
+		Connection con=null;
+		PreparedStatement pst=null;
+		ResultSet rs=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="select imgname from board where boardnum=?";
+			pst=con.prepareStatement(sql);
+			pst.setInt(1, boardNum);
+			rs=pst.executeQuery();
+			rs.next();
+			return rs.getString(1);
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return null;
+		}finally{
+			jdbcUtil.close(rs, pst, con);
+		}
+	}
+	public String findCode(int boardNum){
+		Connection con=null;
+		PreparedStatement pst=null;
+		ResultSet rs=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="select code from board where boardnum=?";
+			pst=con.prepareStatement(sql);
+			pst.setInt(1, boardNum);
+			rs=pst.executeQuery();
+			rs.next();
+			return rs.getString(1);
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return null;
 		}finally{
 			jdbcUtil.close(rs, pst, con);
 		}

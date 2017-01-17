@@ -11,13 +11,18 @@
 	ul{list-style:none;}
 	ul li{float:left;margin-left:15px;margin-top:15px;}
 	a{text-decoration: none}
+	#banner{float:left;width:140px;height:100px;}
+	#banner1{width:130px;height:90px;}
 </style>
 </head>
 <body>
+<div id="banner">
+	<a href="/starter.do"><img src="/images/banner.png" id="banner1"></a>
+</div>
 <div id="headMenu">
 <ul>
-	<li id="login"><a href="/login.do">로그인</a></li>
-	<li id="join"><a href="/join.do">회원가입</a></li>
+	<li id="login"><a href="/CustomerInfo.do?cmd=login">로그인</a></li>
+	<li id="join"><a href="/CustomerInfo.do?cmd=insert">회원가입</a></li>
 	<li><a href="/support.do">고객센터</a></li>
 </ul>
 </div>

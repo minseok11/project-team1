@@ -34,6 +34,11 @@
 	background-color: pink;
 	float: left;
 }
+#writeList {
+	width: 1050px;
+	background-color: gray;
+	float: left;
+}
 
 #itemImage {
 	width: 580px;
@@ -43,8 +48,18 @@
 
 #writePart {
 	width: 580px;
-	height: 580px;
+	float: left;
 }
+#boardList {
+	width: 580px;
+}
+#pageing{
+	width: 580px;
+	height:40px;
+	float: left;
+}
+.boardImg{width:100px;height:100px;float:left}
+.box{float:left}
 </style>
 <script>
 	function cal() {
@@ -53,18 +68,37 @@
 		var totalPrice = document.getElementsByName("totalPrice");
 		totalPrice[0].value = itemPrice * itemCount;
 	}
-	function dTransfer(url) {
+	function dTransfer(event,url) {
+		event.preventDefault();
 		var form = document.getElementById("frm");
-		form.method = "post";
-		form.action = url;
-		form.submit();
+		var idChk=document.getElementById("idChk");
+		if(idChk.value==null || idChk.value==""){
+			alert("로그인 후 사용가능합니다.");
+		}else{
+			form.method = "post";
+			form.action = url;
+			form.submit();
+		}
 	}
 	function wResult() {
 		var result1 = document.getElementById("result1");
 		if (result1.value == null || result1.value == "") {
 			result1.value = "구매후기 입력란입니다.";
 		} else {
-			alert(result1.value);
+			result1.value = "구매후기 입력란입니다.";
+		}
+		var delResult=document.getElementById("delResult");
+		if(delResult.value==null || delResult.value==""){
+			alert(delResult.value);
+			delResult.value="";
+		}else{
+			alert(delResult.value);
+			delResult.value="";
+		}
+		var jjimChk=document.getElementById("jjimChk");
+		if(jjimChk.value!=null || jjimChk.value!=""){
+			alert(jjimChk.value);
+			jjimChk.value="";
 		}
 	}
 	onload = wResult;
@@ -76,9 +110,10 @@
 		<img src="${requestScope.itemImgRoot}" id="itemImage">
 	</div>
 	<div id="itemOption" align="center">
-		<form id="frm">
+		<form id="frm" >
 			<br> <br> <br> <br> <br>
-			<p>상품명:${requestScope.name }
+			<input type="hidden" value="${requestScope.jjim }" id="jjimChk">
+			<p>상품명:${requestScope.name }</p><input type="hidden" value="${sessionScope.id }" id="idChk">
 			<p>상품가격:${requestScope.price }</p>
 			<input type="hidden" value="${requestScope.code }" name="itemCode">
 			<input type="hidden" value="${requestScope.price }" name="itemPrice">
@@ -97,22 +132,26 @@
 			<br> <br>
 			<p>배송비 : 무료</p>
 			<br> <input type="image" value="즉시구매" src="/images/buy.gif"
-				id="buyItem" onclick="dTransfer('/itemBuy.do')">&nbsp; <input
+				id="buyItem" onclick="dTransfer(event,'/itemBuy.do')">&nbsp; <input
 				type="image" value="장바구니" src="/images/basket.gif" id="basket"
-				onclick="dTransfer('/basket.do')">&nbsp; <input type="image"
+				onclick="dTransfer(event,'/basket.do')">&nbsp; <input type="image"
 				value="찜하기" src="/images/love.gif" id="jjim"
-				onclick="dTransfer('/jjim.do')">
+				onclick="dTransfer(event,'/interest.do')">
 		</form>
 	</div>
 	<div id="itemInfoImg1"></div>
 	<div>
-		<div>
+		<div id="writeList">
 			<div id="boardList" align="center">
 				<c:forEach var="list2" items="${requestScope.list3 }">
-					<img src="">
+					<img src="/writeImg/${list2.imgName }" class="boardImg">
+					<div class="box">
 					<p>제목:${list2.title }</p>
 					<p>작성자:${list2.id }</p>
 					<p>${list2.content }</p>
+					<a href="/boardDelete.do?boardNum=${list2.boardNum}&id=${list2.id}">삭제</a>
+					<input type="hidden" value="${requestScope.ans }" id="delResult" >
+					</div>
 				</c:forEach>
 			</div>
 			<div id="pageing" align="center">
@@ -121,22 +160,23 @@
 			[이전]
 		</c:when>
 					<c:otherwise>
-						<a href="/write.do?start=${requestScope.startPage-1 }">[이전]</a>
+						<a href="/itemDetail.do?start=${requestScope.startPage-1 }&code=${requestScope.code}">[이전]</a>
 					</c:otherwise>
 				</c:choose>
 				<c:forEach var="number" begin="${requestScope.startPage }"
 					end="${requestScope.endPage }">
-					<a href="/write.do?start=${number }">[${number }]</a>
+					<a href="/itemDetail.do?start=${number }&code=${requestScope.code}">[${number }]</a>
 				</c:forEach>
 				<c:choose>
 					<c:when test="${requestScope.endPage==requestScope.pageCount }">
 			[다음]
 		</c:when>
 					<c:otherwise>
-						<a href="/write.do?start=${requestScope.endPage+1 }">[다음]</a>
+						<a href="/itemDetail.do?start=${requestScope.endPage+1 }&code=${requestScope.code}">[다음]</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
+		</div>
 			<div id="writePart">
 				<form action="/write.do" method="post" enctype="multipart/form-data">
 					<br>제목<input type="text" name="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -148,7 +188,6 @@
 					<input type="submit" value="작성">
 				</form>
 			</div>
-		</div>
 	</div>
 	</div>
 </body>

@@ -18,7 +18,9 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import shopping.dao.BoardDao;
+import shopping.dao.ItemDao;
 import shopping.dto.BoardDTO;
+import shopping.dto.ItemDTO;
 import shopping.dto.QAboardDTO;
 @WebServlet("/write.do")
 public class WriteController extends HttpServlet{
@@ -56,17 +58,27 @@ public class WriteController extends HttpServlet{
 			b=Integer.parseInt(start)*10-9;
 			e=Integer.parseInt(start)*10;
 		}
-		ArrayList<BoardDTO> list=dao.listUp(id, b, e);
-		req.setAttribute("list3", list);
-		req.setAttribute("startPage", startNum);
-		req.setAttribute("endPage", endNum);
-		req.setAttribute("pageCount", pageCount);
-		
+		ItemDao dao2=new ItemDao();
+		ItemDTO dto2=dao2.itemDetail(code);
+		req.setAttribute("code", code);
+		req.setAttribute("price", dto2.getPrice());
+		req.setAttribute("inventory", dto2.getInventory());
+		req.setAttribute("name",dto2.getName());
+		req.setAttribute("retailPirce", dto2.getRetailPrice());
+		req.setAttribute("itemImgRoot", dto2.getItemImgRoot());
+		req.setAttribute("detailImg", dto2.getDetailImg());
+		req.setAttribute("categoryList", dto2.getCategoryList());
+		req.setAttribute("supplier", dto2.getSupplier());
 		String title=mr.getParameter("title");
 		String content=mr.getParameter("wContent");
 		String saveFileName=mr.getFilesystemName("uploadImg");//角力历厘等颇老疙
 		BoardDTO dto=new BoardDTO(0, title, content, id, code,saveFileName);
 		int boardNum=dao.insert(dto);
+		ArrayList<BoardDTO> list=dao.listUp(code, b, e);
+		req.setAttribute("list3", list);
+		req.setAttribute("startPage", startNum);
+		req.setAttribute("endPage", endNum);
+		req.setAttribute("pageCount", pageCount);
 		if(boardNum>0){
 			req.setAttribute("wResult", "累己己傍");
 			req.setAttribute("content", "/itemDetail.jsp");

@@ -11,9 +11,14 @@
 	ul{list-style:none;}
 	ul li{float:left;margin-left:15px;margin-top:15px;}
 	a{text-decoration: none}
+	#banner{float:left;}
+	#banner1{width:130px;height:90px;}
 </style>
 </head>
 <body>
+<div id="banner">
+	<a href="/starter.do"><img src="/images/banner.png" id="banner1"></a>
+</div>
 <div id="headMenu">
 <ul>
 	<li><a href="/logout.do">로그아웃</a></li>
