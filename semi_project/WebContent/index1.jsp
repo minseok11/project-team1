@@ -6,13 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Adult Toy에 오신것을 환영합니다♥</title>
 <style type="text/css">
-	#wrap{width:1300px;height:1600px}
+	#wrap{width:1300px;height:1600px;}
 	#header{width:1100px;height:100px;background-color:pink;margin-left:100px;}
 	#category{width:1100px;height:100px;background-color:gold;margin-left:100px;}
 	#content{width:1100px;height:1500px;background-color:yellow;margin-left:100px;}
 	#footer{width:1100px;height:150px;background-color:gray;margin-left:100px;}
 </style>
 </head>
+<%--include를 활용한 기본 메인화면 --%>
 <body>
 <div id="wrap">
 	<div id="header">

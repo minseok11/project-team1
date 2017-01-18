@@ -25,13 +25,13 @@ public class ItemController extends HttpServlet{
 		int endNum=startNum+9;
 		int count=dao.getCount(cate);
 		int pageCount=0;
-		if(count>0)pageCount=(int)Math.ceil(count/10.0);
+		if(count>0)pageCount=(int)Math.ceil(count/12.0);
 		if(endNum>pageCount)endNum=pageCount;
 		int b=1;
-		int e=b*10;
+		int e=b*12;
 		if(start!=null){
-			b=Integer.parseInt(start)*20-19;
-			e=Integer.parseInt(start)*20;
+			b=Integer.parseInt(start)*12-11;
+			e=Integer.parseInt(start)*12;
 		}
 		ArrayList<ItemDTO> list=dao.cateList(b, e,cate);
 		req.setAttribute("content", "/itemList.jsp");

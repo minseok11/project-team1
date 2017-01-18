@@ -22,7 +22,7 @@
 <div id="headMenu">
 <ul>
 	<li><a href="/logout.do">로그아웃</a></li>
-	<li><a href="/basket.do">장바구니</a></li>
+	<li><a href="/MyPage.do?cmd=main">마이페이지</a></li>
 	<li><a href="/support.do">고객센터</a></li>
 </ul>
 </div>

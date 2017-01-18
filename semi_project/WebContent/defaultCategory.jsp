@@ -18,10 +18,10 @@
 </head>
 <body>
 <div id="category1" align="center">
-	<c:forEach var="list" items="${requestScope.list }">
+	<c:forEach var="list" items="${requestScope.list }"><%--list리퀘스트스코프에 담겨있는 대상을 객체수만큼 루프 --%>
 	
 		<a class="cateName" href="/itemController.do?cate=${list.categoryList}">${list.categoryList}</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%--카테고리 모두 출력 --%>
 	</c:forEach>
 </div>
 </body>

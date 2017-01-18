@@ -72,4 +72,68 @@ public class CustomerInfoDao {
            jdbcUtil.close(rs, pstmt, con);
         }
      }
+	public int IsMember(String pwd, String id){
+        Connection con=null;
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        boolean using=false;
+        try{
+           con=jdbcUtil.getConn();
+           String sql="select * from CUSTOMERINFO where id=? and password=? ";
+           pstmt=con.prepareStatement(sql);
+           pstmt.setString(1,id);
+           pstmt.setString(2,pwd);
+           rs=pstmt.executeQuery();   
+           if(rs.next()){
+              return 1;               
+           }else{
+              return 0;
+           }
+        }catch(SQLException se){
+           System.out.println(se.getMessage());
+           return -1;
+        }finally{
+           jdbcUtil.close(rs, pstmt, con);
+        }
+     }
+	public int update(CustomerInfoDTO dto){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="update CustomerInfo set password=?,email=?,phoneNo=?,adress=?,postNo=?  where id=?";
+			pstmt=con.prepareStatement(sql);	
+			
+			pstmt.setString(1,dto.getPassword());
+			pstmt.setString(2,dto.getEmail());
+			pstmt.setString(3,dto.getPhoneNo());
+			pstmt.setString(4,dto.getAdress());
+			pstmt.setString(5,dto.getPostNo());
+			pstmt.setString(6,dto.getId());
+			int n=pstmt.executeUpdate();
+			return n;		
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return -1;
+		}finally{
+			jdbcUtil.close(null, pstmt, con);
+		}
+	}
+	public int delete(String id){
+		Connection con=null;
+		PreparedStatement pst=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="delete customerinfo where id=?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, id);
+			int result=pst.executeUpdate();
+			return result;
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return -1;
+		}finally{
+			jdbcUtil.close(null, pst, con);
+		}
+	}
 }

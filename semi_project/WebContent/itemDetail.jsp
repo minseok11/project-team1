@@ -62,14 +62,14 @@
 .box{float:left}
 </style>
 <script>
-	function cal() {
+	function cal() {//상품구입 개수를 입력했을때 실행되는 함수
 		var itemPrice = document.getElementsByName("itemPrice")[0].value;
 		var itemCount = document.getElementsByName("itemCount")[0].value;
 		var totalPrice = document.getElementsByName("totalPrice");
 		totalPrice[0].value = itemPrice * itemCount;
 	}
-	function dTransfer(event,url) {
-		event.preventDefault();
+	function dTransfer(event,url) {//상품구매, 장바구니 담기, 찜하기를 눌렀을 때 각각의 페이지로 submit하기 위한 함수
+		event.preventDefault();//input type='image'를 사용했을 경우 누를 때 submit을 주는 여부에 관계없이 무조건 submit 됨. 그것을 방지하기 위한 메소드
 		var form = document.getElementById("frm");
 		var idChk=document.getElementById("idChk");
 		if(idChk.value==null || idChk.value==""){

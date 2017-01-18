@@ -17,7 +17,7 @@
 </style>
 <script type="text/javascript">
 	var xhr=null;
-	function lChange(n){
+	function lChange(n){//메인페이지 아이템항목 ajax 페이징처리
 		xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=doChange;
 		xhr.open("get", "/mainController.do?cmd=itemChange&num="+n, true);
@@ -28,10 +28,10 @@
 			var xml=xhr.responseXML;
 			var div=document.getElementById("content1");
 			var item=xml.getElementsByTagName("item");
-			while(div.hasChildNodes()){ 
-				div.removeChild( div.lastChild );
+			while(div.hasChildNodes()){ //div에 자식객체가 있으면 없을때까지
+				div.removeChild( div.lastChild );//마지막 자식객체를 삭제함
 			}
-			for(var i=0;i<item.length;i++){
+			for(var i=0;i<item.length;i++){//item객체의 개수만큼 루프
 				var img=document.createElement("img");
 				var divC=document.createElement("div");
 				divC.style.width="300px";
@@ -43,16 +43,16 @@
 				divC.style.marginLeft="20px";
 				divC.style.marginTop="50px";
 				divC.style.textAlign="center";
-				var code=xml.getElementsByTagName("code")[i].firstChild.nodeValue;
-				var itemImgRoot=xml.getElementsByTagName("itemImgRoot")[i].firstChild.nodeValue;
-				var name=xml.getElementsByTagName("name")[i].firstChild.nodeValue;
+				var code=xml.getElementsByTagName("code")[i].firstChild.nodeValue;//테그네임이 code인 대상을 code에 담음
+				var itemImgRoot=xml.getElementsByTagName("itemImgRoot")[i].firstChild.nodeValue;//테그네임이 itemImgRoot인 대상을 itemImgRoot에 담음
+				var name=xml.getElementsByTagName("name")[i].firstChild.nodeValue;//테그네임이 name인 대상을 name에 담음
 				divC.innerHTML="<a href=/itemDetail.do?code="+code+"><img src="+itemImgRoot+"></a><br><br>"
-						+"<a href=/itemDetail.do?code="+code+">"+name+"</a>";
-				div.appendChild(divC);
+						+"<a href=/itemDetail.do?code="+code+">"+name+"</a>";//divC에 innerHTML을 통해 대상 담기
+				div.appendChild(divC);//div에 divC를 자식객체로 담음
 			}
 		}
 	}
-	onload=lChange(1);
+	onload=lChange(1);//창이 다 로드되고 나면 lChange(1)을 실행함
 </script>
 </head>
 <body>

@@ -20,13 +20,14 @@ public class Starter extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		HttpSession session=req.getSession();
+		session.setAttribute("id", "song");
 		if(session.getAttribute("id")==null){
 			req.setAttribute("head", "/defaultHeader.jsp");
 		}else{
 			req.setAttribute("head", "/loginHeader.jsp");
 		}
 		if(req.getParameter("content")!=null){
-			req.setAttribute("content",req.getParameter("content"));;
+			req.setAttribute("content",req.getParameter("content"));
 		}else if(req.getAttribute("content")==null){
 			req.setAttribute("content", "/defaultContent.jsp");
 		}else{
