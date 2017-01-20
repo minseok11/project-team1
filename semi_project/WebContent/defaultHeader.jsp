@@ -21,8 +21,8 @@
 </div>
 <div id="headMenu">
 <ul>
-	<li id="login"><a href="/CustomerInfo.do?cmd=login">로그인</a></li>
-	<li id="join"><a href="/CustomerInfo.do?cmd=insert">회원가입</a></li>
+	<li id="login"><a href="/starter.do?content=/hwang/Login.jsp">로그인</a></li>
+	<li id="join"><a href="/starter.do?content=/hwang/Terms.jsp">회원가입</a></li>
 	<li><a href="/support.do">고객센터</a></li>
 </ul>
 </div>

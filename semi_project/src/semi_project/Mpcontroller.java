@@ -118,7 +118,8 @@ public class Mpcontroller extends HttpServlet {
 			if(password.equals(pwd)&&ans.equals(ans1)){
 				int result=dao.delete(id);
 				if(result>0){
-					
+					session.invalidate();
+					res.sendRedirect("/starter.do");
 				}else{
 					req.setAttribute("dto", dto);
 					req.setAttribute("errMsg", "알수 없는 오류로 해당 명령을 실행할 수 없습니다.");

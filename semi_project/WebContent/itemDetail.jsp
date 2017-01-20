@@ -62,6 +62,11 @@
 .box{float:left}
 </style>
 <script>
+	function msg(){
+		if("${requestScope.msg}"==null||"${requestScope.msg}"!=""){
+			alert("${requestScope.msg}");
+		}
+	}
 	function cal() {//상품구입 개수를 입력했을때 실행되는 함수
 		var itemPrice = document.getElementsByName("itemPrice")[0].value;
 		var itemCount = document.getElementsByName("itemCount")[0].value;
@@ -72,8 +77,11 @@
 		event.preventDefault();//input type='image'를 사용했을 경우 누를 때 submit을 주는 여부에 관계없이 무조건 submit 됨. 그것을 방지하기 위한 메소드
 		var form = document.getElementById("frm");
 		var idChk=document.getElementById("idChk");
+		var num1=document.getElementsByName("itemCount");
 		if(idChk.value==null || idChk.value==""){
 			alert("로그인 후 사용가능합니다.");
+		}else if(num1[0].value==null||num1[0].value==""){
+			alert("상품수량을 입력해주세요");
 		}else{
 			form.method = "post";
 			form.action = url;
@@ -81,27 +89,18 @@
 		}
 	}
 	function wResult() {
-		var result1 = document.getElementById("result1");
-		if (result1.value == null || result1.value == "") {
-			result1.value = "구매후기 입력란입니다.";
-		} else {
-			result1.value = "구매후기 입력란입니다.";
+		if ("${requestScope.wResult}" != null || "${requestScope.wResult}" != "") {
+			alert("${requestScope.wResult}");
 		}
-		var delResult=document.getElementById("delResult");
-		if(delResult.value==null || delResult.value==""){
-			alert(delResult.value);
-			delResult.value="";
-		}else{
-			alert(delResult.value);
-			delResult.value="";
+		if("${requestScope.ans}"!=null || "${requestScope.ans}"!=""){
+			alert("${requestScope.jjimChk}");
 		}
-		var jjimChk=document.getElementById("jjimChk");
-		if(jjimChk.value!=null || jjimChk.value!=""){
+		if("${requestScope.jjimChk}"!=null || "${requestScope.jjimChk}"!=""){
 			alert(jjimChk.value);
-			jjimChk.value="";
 		}
 	}
 	onload = wResult;
+	onload = msg;
 </script>
 </head>
 <body>
@@ -112,7 +111,6 @@
 	<div id="itemOption" align="center">
 		<form id="frm" >
 			<br> <br> <br> <br> <br>
-			<input type="hidden" value="${requestScope.jjim }" id="jjimChk">
 			<p>상품명:${requestScope.name }</p><input type="hidden" value="${sessionScope.id }" id="idChk">
 			<p>상품가격:${requestScope.price }</p>
 			<input type="hidden" value="${requestScope.code }" name="itemCode">
@@ -126,17 +124,17 @@
 				value="${requestScope.categoryList }" name="itemCate"> <input
 				type="hidden" value="${requestScope.supplier }" name="itemSupplier">
 			<p>수량</p>
-			<input type="text" name="itemCount" size="5" onchange="cal()"><br>
+			<input type="number" min="0" name="itemCount" style="width: 3em" onchange="cal()"><br>
 			<p>합계금액</p>
 			<input type="text" name="totalPrice" size="5" readonly="readonly"><br>
 			<br> <br>
 			<p>배송비 : 무료</p>
 			<br> <input type="image" value="즉시구매" src="/images/buy.gif"
-				id="buyItem" onclick="dTransfer(event,'/itemBuy.do')">&nbsp; <input
+				id="buyItem" onclick="dTransfer(event,'/payment.do?cmd=insertTab')">&nbsp; <input
 				type="image" value="장바구니" src="/images/basket.gif" id="basket"
-				onclick="dTransfer(event,'/basket.do')">&nbsp; <input type="image"
+				onclick="dTransfer(event,'/basket.do?cmd=insert')">&nbsp; <input type="image"
 				value="찜하기" src="/images/love.gif" id="jjim"
-				onclick="dTransfer(event,'/interest.do')">
+				onclick="dTransfer(event,'/interest.do?cmd=insert')">
 		</form>
 	</div>
 	<div id="itemInfoImg1"></div>
@@ -180,8 +178,7 @@
 			<div id="writePart">
 				<form action="/write.do" method="post" enctype="multipart/form-data">
 					<br>제목<input type="text" name="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="text" id="result1" value="${requestScope.wResult }"
-						readonly="readonly"><br>
+				<br>
 					<textarea rows="10" cols="60" name="wContent"></textarea>
 					<br> <input type="file" name="uploadImg"> <input
 						type="hidden" value="${requestScope.code }" name="code">
@@ -190,5 +187,6 @@
 			</div>
 	</div>
 	</div>
+	<input type="hidden" id="msg" value="${requestScope.msg }">
 </body>
 </html>

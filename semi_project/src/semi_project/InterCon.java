@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import shopping.dao.InterestDao;
 import shopping.dto.InterestDTO;
-@WebServlet("/interest.do")
+@WebServlet("/interest1.do")
 public class InterCon extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

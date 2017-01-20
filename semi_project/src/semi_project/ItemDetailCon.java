@@ -48,12 +48,15 @@ public class ItemDetailCon extends HttpServlet{
 			e=Integer.parseInt(start)*10;
 		}
 		String id=(String)session.getAttribute("id");
-		id="admin";
 		ArrayList<BoardDTO> list=dao1.listUp(code, b, e);
 		req.setAttribute("list3", list);
 		req.setAttribute("startPage", startNum);
 		req.setAttribute("endPage", endNum);
 		req.setAttribute("pageCount", pageCount);
+		//req.setAttribute("msg", "");
+		//req.setAttribute("ans", "");
+		//req.setAttribute("wResult", "");
+		//req.setAttribute("jjimChk", "");
 		req.setAttribute("content", "/itemDetail.jsp");
 		req.getRequestDispatcher("/starter.do").forward(req, resp);
 	}

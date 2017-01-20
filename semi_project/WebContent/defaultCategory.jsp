@@ -17,6 +17,11 @@
 </script>
 </head>
 <body>
+<div id="box1" align="center">
+	<form action="/search.do">
+		<input type="text" name="search"><input type="submit" value="검색">
+	</form>		
+</div>
 <div id="category1" align="center">
 	<c:forEach var="list" items="${requestScope.list }"><%--list리퀘스트스코프에 담겨있는 대상을 객체수만큼 루프 --%>
 	

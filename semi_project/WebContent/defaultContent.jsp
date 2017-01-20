@@ -62,5 +62,7 @@
 	<a href="javascript:lChange(13)">●</a>
 </div>
 <div id="content1"></div>
+<br>
+<div id="mdPage"><jsp:include page="/hwang/Merchandise.jsp"/></div>
 </body>
 </html>
