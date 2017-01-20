@@ -14,8 +14,8 @@
 	</div>
 	<div id="wrap">
 	
-	<a href="/Yoseop/Aitems.do?cmd=insertTab">상품추가</a>
-	<a href="/Yoseop/Aitems.do?cmd=search">상품수정</a>
+	<a href="/Aitems.do?cmd=insertTab">상품추가</a>
+	<a href="/Aitems.do?cmd=search">상품수정</a>
 	
 	</div>
 </body>

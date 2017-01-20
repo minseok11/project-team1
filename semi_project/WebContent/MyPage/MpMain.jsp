@@ -23,9 +23,11 @@
 <li><a href="/MyPage.do?cmd=getinfo">회원정보수정</a></li>
 <li><a href="/MyPage.do?cmd=delPage">회원탈퇴</a></li>
 <li><a href="/interest.do?cmd=IdList">관심상품</a></li>
-<li><a href="/payment.do?cmd=list"> 주문내역</a></li>
+<li><a href="/payment.do?cmd=paymentList"> 주문내역</a></li>
 <li><a href="/basket.do?cmd=IdList">장바구니</a></li>
-<li><a href="/MyPage/MpWrite.jsp">내가 작성한 게시글</a></li>
+<li><a href="/QAController.do">1:1문의</a></li>
+<li><a href="/qna.do?cmd=qaList">내 문의내역</a></li>
+
 </ul>
 </table>
 </table>

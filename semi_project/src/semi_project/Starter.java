@@ -2,6 +2,7 @@ package semi_project;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.ScheduledExecutorService;
 
 import javax.servlet.ServletException;
@@ -25,10 +26,31 @@ public class Starter extends HttpServlet{
 		}else{
 			req.setAttribute("head", "/loginHeader.jsp");
 		}
+		if(session.getAttribute("id")!=null&&session.getAttribute("id").equals("admin")){
+			req.setAttribute("head", "/adminstration.jsp");
+		}
 		if(req.getParameter("content")!=null){
 			req.setAttribute("content",req.getParameter("content"));
 		}else if(req.getAttribute("content")==null){
 			req.setAttribute("content", "/defaultContent.jsp");
+			ItemDao dao=new ItemDao();
+			String[] icode=new String[9];
+			String[] iimgroot=new String[9];
+			int i=0;
+			ArrayList<ItemDTO> list=dao.mdItem();
+			if(list!=null){
+				Iterator<ItemDTO> it=list.iterator();
+				while(it.hasNext()){
+					ItemDTO dto=it.next();
+					icode[i]=dto.getCode();
+					System.out.println(icode[i]);
+					iimgroot[i]=dto.getItemImgRoot();
+					System.out.println(iimgroot[i]);
+					i++;
+				}
+				req.setAttribute("icode", icode);
+				req.setAttribute("iimgroot", iimgroot);
+			}
 		}else{
 			req.setAttribute("content",req.getAttribute("content"));
 		}

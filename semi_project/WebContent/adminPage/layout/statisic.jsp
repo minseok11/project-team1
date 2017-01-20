@@ -16,7 +16,7 @@
 	<div>
 		<jsp:include page="/adminPage/admin1.jsp"></jsp:include>
 	</div>
-	<form action="/Yoseop/statistic.do?cmd=year_list" method="post">
+	<form action="/statistic.do?cmd=year_list" method="post">
 	<select name="year">
 		<c:forEach var="i" items="${listAll }">
 			<option value="${i.year_month}">20${Math.round(i.year_month/100) }년 ${i.year_month-Math.round(i.year_month/100)*100 }월</option>

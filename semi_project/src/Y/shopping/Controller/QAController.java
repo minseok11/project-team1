@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Y.shopping.dao.QAboardDao;
 import Y.shopping.dto.QAboardDTO;
@@ -25,6 +26,10 @@ public class QAController extends HttpServlet{
 			SeeQA(request,response);
 		}else if(cmd.equals("answer")){
 			answer(request,response);
+		}else if(cmd.equals("qaList")){
+			qalist(request,response);
+		}else if(cmd.equals("MyQA")){
+			MyQA(request,response);
 		}
 	}
 	protected void answer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,10 +54,53 @@ public class QAController extends HttpServlet{
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("/adminPage/layout/QNAdetail.jsp").forward(request, response);
 	}
+	protected void MyQA(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int num=Integer.parseInt(request.getParameter("num"));
+		
+		
+		
+		QAboardDao dao=new QAboardDao();
+		QAboardDTO dto =dao.SeeQA(num);
+		QAboardDTO dto2 =dao.SeeAnswer(num);
+		
+		request.setAttribute("dto2", dto);
+		request.setAttribute("dto3", dto2);
+		
+		request.setAttribute("content", "/MyPage/MyQa.jsp");
+		request.getRequestDispatcher("/starter.do").forward(request, response);
+	}
 	protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		QAboardDao dao=new QAboardDao();
 		ArrayList<QAboardDTO> list=dao.listAll();
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/adminPage/layout/QNA.jsp").forward(request, response);
+	}
+	protected void qalist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		QAboardDao dao=new QAboardDao();
+		String start=request.getParameter("start");
+		int startNum=1;
+		if(start!=null)startNum=Integer.parseInt(start);
+		startNum=(startNum-1)/10*10+1;
+		int endNum=startNum+9;
+		int count=dao.getCount(id);
+		int pageCount=0;
+		if(count>0)pageCount=(int)Math.ceil(count/10.0);
+		if(endNum>pageCount)endNum=pageCount;
+		int b=1;
+		int e=b*10;
+		if(start!=null){
+			b=Integer.parseInt(start)*10-9;
+			e=Integer.parseInt(start)*10;
+		}
+		ArrayList<QAboardDTO> list=dao.listUp(id, b, e);
+		request.setAttribute("content", "/MyPage/MpWrite.jsp");
+		request.setAttribute("list3", list);
+		request.setAttribute("startPage", startNum);
+		request.setAttribute("endPage", endNum);
+		request.setAttribute("pageCount", pageCount);
+		request.getRequestDispatcher("/starter.do").forward(request, response);
 	}
 }

@@ -12,7 +12,7 @@
 	<jsp:include page="/adminPage/admin1.jsp"></jsp:include>
 </div>
 
-	<form action="/Yoseop/coupon.do?cmd=insert" method="post">
+	<form action="/coupon.do?cmd=insert" method="post">
 	<table>
 		<tr>
 			<td>쿠폰명</td><td><input type="text" name="c_name"></td>

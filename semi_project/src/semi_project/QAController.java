@@ -19,7 +19,7 @@ import shopping.dto.QAboardDTO;
 public class QAController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("content", "/qnaboard.jsp");
+		req.setAttribute("content", "/qnaWrite.jsp");
 		HttpSession session=req.getSession();
 		String sid=(String)session.getAttribute("id");
 		CustomerInfoDao dao=new CustomerInfoDao();
@@ -42,6 +42,13 @@ public class QAController extends HttpServlet{
 		String id=(String)session.getAttribute("id");
 		String qaList=req.getParameter("qaList");
 		QAboardDTO dto=new QAboardDTO(0, 0, title, content, id, qaList);
-		
+		QAboardDao dao=new QAboardDao();
+		int result=dao.insert(dto);
+		if(result>0){
+			resp.sendRedirect("/qna.do?cmd=qaList");
+		}else{
+			req.setAttribute("errMsg", "오류로 인해 작성 실패 하였습니다.");
+			req.getRequestDispatcher("/QAController.do").forward(req, resp);
+		}
 	}
 }

@@ -20,7 +20,7 @@
 	</tr>
 	<c:forEach var="dto" items="${list }">
 		<tr>
-			<td><a href="/Yoseop/userinfo.do?cmd=list&id=${dto.id }">${dto.id }</a></td><td>${dto.name }</td><td>${dto.email }</td><td>${dto.phoneNo }</td><td>${dto.adress }</td><td>${dto.gender }</td>
+			<td><a href="/userinfo.do?cmd=list&id=${dto.id }">${dto.id }</a></td><td>${dto.name }</td><td>${dto.email }</td><td>${dto.phoneNo }</td><td>${dto.adress }</td><td>${dto.gender }</td>
 		</tr>
 	</c:forEach>
 </table>

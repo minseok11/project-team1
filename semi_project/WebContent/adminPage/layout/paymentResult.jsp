@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function payResult(){
-		location.href="/starter.do?content=/adminPage/admin.jsp";//마이페이지 결제내역 확인 페이지로
+		location.href="/starter.do?content=/payment.do&cmd=paymentList";//마이페이지 결제내역 확인 페이지로
 	}
 	function mainPage(){
 		location.href="/starter.do";//메인화면으로

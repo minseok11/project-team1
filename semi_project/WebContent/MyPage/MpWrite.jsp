@@ -1,32 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#qalist {
+	width: 1000px;
+	height: 1300px;
+	background-color: #BEEFFF;
+	margin: auto;
+	padding-top: 100px;
+}
+
+#pageing {
+	width: 1000px;
+	height: 100px;
+	background-color: #CEBEE1;
+	margin: auto;
+}
+.num{display: inline-block;width:100px;border:1px solid gray;}
+.title{display: inline-block;width:430px;border:1px solid gray;}
+.id{display: inline-block;width:100px;border:1px solid gray;}
+.qalist{display: inline-block;width:200px;border:1px solid gray;}
+</style>
 </head>
 <body>
-<!-- 
-클라이언트가 게시판을 통해 작성한 글 목록들이 DB에 불려온다.
-글 목록을 클릭하면 게시판에 있는 자신이 쓴 글의 페이지로 넘어간다. 
- -->
- 
-<h1 align="center"><font color="#006699"><font size=15>내가 작성한 게시글</font></font></h1>
-
-<form action="mpjang.do" method="post">
-<table align="center" width="600" border="1"> 
-	<tr align="center" bgcolor="#ccffcc">
-	   <td>글번호</td>
-	   <td>아이디</td>
-	   <td>제목</td>
-	   <td align="center">
-	   <input type="submit" name="delete" value="삭제"/>
-	   </td>	
-	</tr> 
-</table>
-</form>
-
+	<div>
+		<div id="qalist" align="center">
+		<h3>나의 문의내역</h3>
+			<span class="num" style="border: 1px solid black;">글번호</span>
+			<span class="title" style="border: 1px solid black;">글제목</span>
+			<span class="id" style="border: 1px solid black;">작성자</span>
+			<span class="qalist" style="border: 1px solid black;">문의내역</span>
+				<br>
+			<c:forEach var="list2" items="${list3 }">
+				<span class="num">${list2.num }</span>
+				<span class="title"><a href="/qna.do?cmd=MyQA&num=${list2.num }" style="text-decoration: none;">${list2.title }</a></span>
+				<span class="id">${list2.id }</span>
+				<span class="qalist">${list2.qaList }</span>
+				<br>
+			</c:forEach>
+		</div>
+		<div id="pageing" align="center">
+			<c:choose>
+				<c:when test="/qna.do?cmd=qaList&pageNum=${requestScope.startPage==1 }">
+			[이전]
+		</c:when>
+				<c:otherwise>
+					<a href="/qna.do?cmd=qaList&pageNum=${requestScope.startPage-1 }">[이전]</a>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="number" begin="${requestScope.startPage }"
+				end="${requestScope.endPage }">
+				<a href="/qna.do?cmd=qaList&pageNum=${number }">[${number }]</a>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${requestScope.endPage==requestScope.pageCount }">
+			[다음]
+		</c:when>
+				<c:otherwise>
+					<a href="/qna.do?cmd=qaList&pageNum=${requestScope.endPage+1 }">[다음]</a>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
 </body>
 </html>
 

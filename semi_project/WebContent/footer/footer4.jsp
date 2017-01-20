@@ -5,8 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	#info{overflow: auto;}
+</style>
 </head>
 <body>
+<div id="info">
 <h3>개인정보취급방침</h3>
 <fieldset>
 <p>
@@ -134,5 +138,6 @@
 
 </p>
 </fieldset>
+</div>
 </body>
 </html>

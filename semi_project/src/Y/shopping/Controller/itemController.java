@@ -97,7 +97,7 @@ public class itemController extends HttpServlet{
 	}
 	protected void insert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("insert");
-		String savePath=request.getServletContext().getRealPath("/images");
+		String savePath=request.getServletContext().getRealPath("/images/itemImg");
 		int sizeLimit = 1024*1024*15;
 		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
 			

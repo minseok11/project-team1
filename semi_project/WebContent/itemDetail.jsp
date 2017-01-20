@@ -63,13 +63,13 @@
 </style>
 <script>
 	function msg(){
-		if("${requestScope.msg}"==null||"${requestScope.msg}"!=""){
+		if("${requestScope.msg}"!=""){
 			alert("${requestScope.msg}");
 		}
 	}
 	function cal() {//상품구입 개수를 입력했을때 실행되는 함수
 		var itemPrice = document.getElementsByName("itemPrice")[0].value;
-		var itemCount = document.getElementsByName("itemCount")[0].value;
+		var itemCount = document.getElementsByName("cnt")[0].value;
 		var totalPrice = document.getElementsByName("totalPrice");
 		totalPrice[0].value = itemPrice * itemCount;
 	}
@@ -77,7 +77,7 @@
 		event.preventDefault();//input type='image'를 사용했을 경우 누를 때 submit을 주는 여부에 관계없이 무조건 submit 됨. 그것을 방지하기 위한 메소드
 		var form = document.getElementById("frm");
 		var idChk=document.getElementById("idChk");
-		var num1=document.getElementsByName("itemCount");
+		var num1=document.getElementsByName("cnt");
 		if(idChk.value==null || idChk.value==""){
 			alert("로그인 후 사용가능합니다.");
 		}else if(num1[0].value==null||num1[0].value==""){
@@ -124,7 +124,7 @@
 				value="${requestScope.categoryList }" name="itemCate"> <input
 				type="hidden" value="${requestScope.supplier }" name="itemSupplier">
 			<p>수량</p>
-			<input type="number" min="0" name="itemCount" style="width: 3em" onchange="cal()"><br>
+			<input type="number" min="0" name="cnt" style="width: 3em" onchange="cal()"><br>
 			<p>합계금액</p>
 			<input type="text" name="totalPrice" size="5" readonly="readonly"><br>
 			<br> <br>

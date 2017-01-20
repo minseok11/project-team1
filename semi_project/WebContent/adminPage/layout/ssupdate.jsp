@@ -13,9 +13,9 @@
 		<jsp:include page="/adminPage/admin1.jsp"></jsp:include>
 	</div>
 	<br>
-	<a href="/Yoseop/supplier.do?cmd=list">이전</a>
+	<a href="/supplier.do?cmd=list">이전</a>
 	<br>
-	<form action="/Yoseop/supplier.do?cmd=update" method="post">
+	<form action="/supplier.do?cmd=update" method="post">
 		<table border="1" width="600">
 		<c:forEach var="list" items="${list }">		
 			<tr>

@@ -12,9 +12,9 @@
 		<jsp:include page="/adminPage/admin1.jsp"></jsp:include>
 	</div>
 	<br>
-	<a href="/Yoseop/supplier.do?cmd=list">이전</a>
+	<a href="/supplier.do?cmd=list">이전</a>
 	<br>
-	<form action="/Yoseop/supplier.do?cmd=insert" method="post">
+	<form action="/supplier.do?cmd=insert" method="post">
 		<table border="1" width="600">
 			<tr>
 				<td>공급업체명</td>

@@ -51,23 +51,23 @@
 <div id="wrap1">
 	<div id="list1">
 		<ul>
-			<li><a href=""><img src="images/1.jpg" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
-			<li><a href=""><img src="images/2.jpg" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
-			<li><a href=""><img src="images/3.jpg" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
+			<li><a href="/itemDetail.do?code=${requestScope.icode[0]}"><img src="/images/itemImg/${requestScopt.iimgroot[0] }" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
+			<li><a href="/itemDetail.do?code=${requestScope.icode[1]}"><img src="/images/itemImg/${requestScopt.iimgroot[1] }" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
+			<li><a href="/itemDetail.do?code=${requestScope.icode[2]}"><img src="/images/itemImg/${requestScopt.iimgroot[2] }" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
 		</ul>
 	</div>
 	<div id="list2">
 		<ul>
-			<li><a href=""><img src="images/4.jpg" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
-			<li><a href=""><img src="images/5.jpg" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
-			<li><a href=""><img src="images/6.jpg" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
+			<li><a href="/itemDetail.do?code=${requestScope.icode[3]}"><img src="/images/itemImg/${requestScopt.iimgroot[3] }" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
+			<li><a href="/itemDetail.do?code=${requestScope.icode[4]}"><img src="/images/itemImg/${requestScopt.iimgroot[4] }" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
+			<li><a href="/itemDetail.do?code=${requestScope.icode[5]}"><img src="/images/itemImg/${requestScopt.iimgroot[5] }" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
 		</ul>
 	</div>
 	<div id="list3">
 		<ul>
-			<li><a href=""><img src="images/7.jpg" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
-			<li><a href=""><img src="images/8.jpg" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
-			<li><a href=""><img src="images/4.jpg" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
+			<li><a href="/itemDetail.do?code=${requestScope.icode[6]}"><img src="/images/itemImg/${requestScopt.iimgroot[6] }" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
+			<li><a href="/itemDetail.do?code=${requestScope.icode[7]}"><img src="/images/itemImg/${requestScopt.iimgroot[7] }" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
+			<li><a href="/itemDetail.do?code=${requestScope.icode[8]}"><img src="/images/itemImg/${requestScopt.iimgroot[8] }" onmouseover="change(event)" onmouseout="reset(event)"></a></li>
 		</ul>
 	</div>
 </div>

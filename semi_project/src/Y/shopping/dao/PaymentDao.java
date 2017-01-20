@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import Y.shopping.dto.DeliveryDTO;
 import Y.shopping.dto.ItemDTO;
 import Y.shopping.dto.PaymentDTO;
+import Y.shopping.dto.PaymentResultDTO;
 import Y.shopping.dto.StatisticDTO;
 import jdbc.util.jdbcUtil;
 
@@ -61,12 +62,15 @@ public class PaymentDao {
 		Connection con=null;
 		PreparedStatement pst=null;
 		PreparedStatement pst2=null;
+		PreparedStatement pst3=null;
 		try{
 			con=jdbcUtil.getConn();
 			String sql="insert into payment values(SEQ_PAYMENT_PAYMENTNUM.nextval,?,?,?,?,?,?,?,to_char(sysdate,'YYMM'),?)";
 			String sql2="update statistic set totalretailprice=totalretailprice+? , totalsales=totalsales+? where year_month=to_char(sysdate,'YYMM')";
+			String sql3="update item set inventory=inventory-? where code=? ";
 			pst=con.prepareStatement(sql);
 			pst2=con.prepareStatement(sql2);
+			pst3=con.prepareStatement(sql3);
 			pst.setInt(1, dto.getItemCost());
 			pst.setInt(2, dto.getRetailPrice());
 			pst.setString(3, "결제완료");
@@ -79,6 +83,8 @@ public class PaymentDao {
 			pst2.setInt(1, dto.getRetailPrice());
 			pst2.setInt(2, dto.getItemCost());
 			int n2=pst2.executeUpdate();
+			pst3.setInt(1, dto.getCnt());
+			pst3.setString(2, dto.getCode());
 			return n+n2;
 		}catch(SQLException se){
 			System.out.println(se.getMessage());
@@ -115,6 +121,26 @@ public class PaymentDao {
 			return null;
 		}
 	}
+	public int getCount(String id){
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="select NVL(count(rnum),0) countnum from (select bb.*,rownum rnum from(select aa.*,deliverycondi from (select p.deliveryNo,p.paymentnum,i.code,i.itemimgroot,i.name,i.price,p.cnt,p.coupon,p.itemcost from item i,payment p where i.code=p.code and id=? order by p.paymentnum)aa ,delivery d where aa.deliveryNo=d.deliveryNo order by paymentnum desc)bb)cc";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			rs.next();
+			int num=rs.getInt("countnum");
+			return num;
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return -1;
+		}finally{
+			jdbcUtil.close(rs, pstmt, con);
+		}
+	}
 	public ArrayList<PaymentDTO> paylist(String id){
 		Connection con=null;
 		PreparedStatement pst=null;
@@ -145,6 +171,55 @@ public class PaymentDao {
 			return null;
 		}
 	}
+	public ArrayList<PaymentResultDTO> paymentlist(String id, int startRow, int endRow){
+		Connection con=null;
+		PreparedStatement pst=null;
+		PreparedStatement pst2=null;
+		ResultSet rs=null;
+		ResultSet rs2=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="select * from (select bb.*,rownum rnum from(select aa.*,deliverycondi from (select p.deliveryNo,p.paymentnum,i.code,i.itemimgroot,i.name,i.price,p.cnt,p.coupon,p.itemcost from item i,payment p where i.code=p.code and id=? order by p.paymentnum)aa ,delivery d where aa.deliveryNo=d.deliveryNo order by paymentnum desc)bb)where rnum>=? and rnum<=?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, id);
+			pst.setInt(2, startRow);
+			pst.setInt(3, endRow);
+			rs=pst.executeQuery();
+			ArrayList<PaymentResultDTO> list=new ArrayList<>();
+			while(rs.next()){
+				rs.getInt(1);
+				PaymentResultDTO dto=new PaymentResultDTO(
+						/*
+						rs.getInt("paymentnum"),
+						rs.getString("code"),
+						rs.getString("itemImgRoot"),
+						rs.getString("name"),
+						rs.getInt("price"),
+						rs.getInt("cnt"),
+						rs.getString("coupon"),
+						rs.getInt("itemCost"),
+						rs.getString("devlierycondi")
+						*/
+						rs.getInt(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getInt(7),
+						rs.getString(8),
+						rs.getInt(9),
+						rs.getString(10)
+						);
+						
+				list.add(dto);
+			}
+			return list;
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return null;
+		}
+	}
+	
 	public int delete(int num){
 		Connection con=null;
 		PreparedStatement pst=null;

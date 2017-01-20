@@ -32,10 +32,10 @@
 	<button onclick="addAnswer()">답변하기</button>
 	
 	<div id="answer">
-	<form action="/Yoseop/qna.do?cmd=answer" method="post">
+	<form action="/qna.do?cmd=answer" method="post">
 		<input type="hidden" value="${dto.refNum }" name="ref">
 		<span class="sp">글제목</span><input type="text" name="a_title"><br>
-		<span class="sp">작성자</span><input type="text" name="a_writer"><br>
+		<span class="sp">작성자</span><input type="text" name="a_writer" value="admin" readonly="readonly"><br>
 		<span class="sp">문의분류</span><input type="text" value="${dto.qaList }" name="a_qalist"><br>
 		<span class="sp">문의내역</span><br>
 		<textarea rows="10" cols="60" name="a_content" style="font-size: 20px;font-weight: bold;"></textarea><br>

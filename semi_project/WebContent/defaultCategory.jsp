@@ -19,7 +19,7 @@
 <body>
 <div id="box1" align="center">
 	<form action="/search.do">
-		<input type="text" name="search"><input type="submit" value="검색">
+		<input type="text" name="search" style="border: 5px solid black;"><input type="submit" value="검색" style="width:50px;font-size:20px;">
 	</form>		
 </div>
 <div id="category1" align="center">

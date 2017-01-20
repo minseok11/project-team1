@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Adult Toy에 오신것을 환영합니다♥</title>
 <style type="text/css">
-	#wrap2{width:1300px;height:1600px;}
+	#wrap2{width:100%;height:100%;}
 	#header{width:1100px;height:100px;background-color:pink;margin-left:100px;}
 	#category{width:1100px;height:100px;background-color:gold;margin-left:100px;}
 	#content{width:1100px;height:1500px;background-color:yellow;margin-left:100px;}
@@ -15,7 +15,7 @@
 </head>
 <%--include를 활용한 기본 메인화면 --%>
 <body>
-<div id="wrap2">
+<div id="wrap2" align="center">
 	<div id="header">
 	<jsp:include page="${requestScope.head }"/>
 	</div>

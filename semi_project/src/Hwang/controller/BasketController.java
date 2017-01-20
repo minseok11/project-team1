@@ -51,7 +51,7 @@ public class BasketController extends HttpServlet {
 		 String itemPrice=request.getParameter("itemPrice");
 		 int totalPrice=Integer.parseInt(itemPrice);
 		 String code=request.getParameter("itemCode");
-		 String ccnt=request.getParameter("itemCount");
+		 String ccnt=request.getParameter("cnt");
 		 int cnt=Integer.parseInt(ccnt);
 		 String itemInven=request.getParameter("itemInven");
 		 String itemName=request.getParameter("itemName");

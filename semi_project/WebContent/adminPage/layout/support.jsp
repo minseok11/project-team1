@@ -13,7 +13,7 @@
 	<jsp:include page="/adminPage/admin1.jsp"></jsp:include>
 </div>
 <br>
-<a href="/Yoseop/adminPage/layout/ssinsert.jsp">공급업체 추가</a>
+<a href="/adminPage/layout/ssinsert.jsp">공급업체 추가</a>
 <div>
 <span style="font-size:20px;font-weight: bold;">공급업체</span>
 <table border="1" width="800px">
@@ -26,8 +26,8 @@
 			<td>${dto.manager }</td>
 			<td>${dto.contect }</td>
 			<td>
-			<a href="/Yoseop/supplier.do?cmd=detail&supplier=${dto.supplier }">수정</a>
-			<a href="/Yoseop/supplier.do?cmd=delete&supplier=${dto.supplier }">삭제</a>
+			<a href="/supplier.do?cmd=detail&supplier=${dto.supplier }">수정</a>
+			<a href="/supplier.do?cmd=delete&supplier=${dto.supplier }">삭제</a>
 			</td>
 		</tr>
 	</c:forEach>

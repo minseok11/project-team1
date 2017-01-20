@@ -21,7 +21,7 @@
 	<tr>
 		<td>${dto.num }</td>
 		<td>${dto.id }</td>
-		<td><a href="/Yoseop/qna.do?cmd=SeeQA&num=${dto.num }">${dto.title }</a>
+		<td><a href="/qna.do?cmd=SeeQA&num=${dto.num }">${dto.title }</a>
 		</td><td>${dto.qaList }</td>
 		<td>
 			<select>

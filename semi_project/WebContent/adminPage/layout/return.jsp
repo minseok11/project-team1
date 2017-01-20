@@ -30,7 +30,7 @@
 <br>
 <br>
 <span style="font-size:20px;font-weight: bold;">검색</span>
-<form action="/Yoseop/returnitem.do?cmd=search" method="post">
+<form action="/returnitem.do?cmd=search" method="post">
 			<table border="1" width="800px">
 				<tr>
 					<td><select name="option">

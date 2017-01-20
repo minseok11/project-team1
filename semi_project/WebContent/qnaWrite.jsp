@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,9 +10,17 @@
 	#1{width:200px;height:100px;border:1px solid black;}
 	#2{width:605px;height:600px;border:1px solid black;}
 </style>
+<script type="text/javascript">
+	function msg(){
+		if("${requestScope.errMsg}" != ""){
+			alert("${requestScope.errMsg}");
+		}
+	}
+	onload=msg;
+</script>
 </head>
 <body>
-<form method="post" action="/QAController.do"></form>
+<form method="post" action="/QAController.do">
 문의항목<select name="qaList">
 	<option value="취소문의">취소문의</option>
 	<option value="쿠폰문의">쿠폰문의</option>
@@ -35,5 +44,6 @@
 </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input type="submit" value="문의하기">
+</form>
 </body>
 </html>

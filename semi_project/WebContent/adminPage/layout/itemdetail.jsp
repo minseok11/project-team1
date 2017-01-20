@@ -15,7 +15,7 @@
 	</div>
 	<br>
 	<h1>수정</h1><br>
-	<a href="/Yoseop/Aitems.do?cmd=list">이전</a>
+	<a href="/Aitems.do?cmd=list">이전</a>
 	<br>
 	<form action="<%=request.getContextPath() %>/Aitems.do?cmd=update" method="post" enctype="multipart/form-data">
 	<table border="1" width="800">

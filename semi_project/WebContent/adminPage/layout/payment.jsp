@@ -23,21 +23,45 @@
 	int price=0;
 	int retail=0;
 	int sell=0;
-	int cnt=2;
+	int size=0;
 	
-	if(request.getParameter("itemCount")!=null || !request.getParameter("itemCount").equals("")){
-		cnt=Integer.parseInt(request.getParameter("itemCount"));
+	
+	
+	String [] bnum=null;
+	String [] count=(String [])request.getAttribute("itemCount");
+	String [] buynum=(String [])request.getAttribute("buynum");
+	int [] cnt=new int[count.length];
+	if(count!=null){
+		for(int i=0;i<count.length;i++){
+			cnt [i] = Integer.parseInt(count[i]);
+			bnum=new String[count.length];
+			bnum[i]="0";
+		}
 	}
-	
+	if(buynum==null){
+		buynum=bnum;
+	}
 	ArrayList<ItemDTO> itemlist=(ArrayList<ItemDTO>)request.getAttribute("ilist");
+	size=itemlist.size();
 	ItemDTO idto=new ItemDTO();
+	String [] i_img=new String[size];
+	String [] i_code=new String[size];
+	String [] i_name=new String[size];
+	int [] i_price=new int[size];
+	int [] i_retail=new int[size];
 	for(int i=0;i<itemlist.size();i++){
 		idto=itemlist.get(i);
+		i_code[i]=idto.getCode();
+		i_name[i]=idto.getName();
+		i_price[i]=idto.getPrice();
+		i_retail[i]=idto.getRetailPrice();
+		
 		sell=idto.getPrice();
-		price=idto.getPrice()*cnt;
-		retail=idto.getRetailPrice()*cnt;
+		price=idto.getPrice()*cnt[i];
+		System.out.println("B:"+cnt[i]);
+		retail=idto.getRetailPrice()*cnt[i];
 		total=total+price;
-		totalprice=totalprice+total;
+		totalprice=totalprice+(i_price[i]*cnt[i]);
 	}
 %>
 <script type="text/javascript">
@@ -55,24 +79,33 @@
 <tr>
 	<td>상품이미지</td><td>상품명</td><td>수량</td><td>판매가격</td><td>배송비</td><td>합계</td>
 </tr>
+<%--
 <c:forEach var="item" items="${ilist }">
-	<tr>
 		<td><img src="../Yoseop/images/${item.itemImgRoot }" width="80px" height="80px"></td>
 		<input type="hidden" value="${item.code }" name="code">
-		<input type="hidden" value="<%=price %>" name="price">
-		<input type="hidden" value="<%=price %>" name="pp">
-		<input type="hidden" value="<%=retail %>" name="retail">
-		<input type="hidden" value="<%=cnt %>" name="cnt">
-		<td>${item.name }</td>
-		<td><%=cnt %></td>
-		<td><%=sell %>원</td>
+		<input type="hidden" value="${item.price }" name="price">
+		<input type="hidden" value="${item.price }" name="pp">
+		<input type="hidden" value="${item.retailPrice }" name="retail">
+		 --%>
+		 <% for(int i=0;i<size;i++){ %>
+		<td><img src="../images/itemImg<%=i_img[i] %>" width="80px" height="80px"></td>
+		<input type="hidden" value="<%=buynum[i] %>" name="buynum">
+		<input type="hidden" value="<%=i_code[i] %>" name="code">
+		<input type="hidden" value="<%=i_price[i] %>" name="price">
+		<input type="hidden" value="<%=i_price[i] %>" name="pp">
+		<input type="hidden" value="<%=i_retail[i] %>" name="retail">
+		<input type="hidden" value="<%=cnt[i] %>" name="cnt">
+		<td><%=i_name[i] %></td>
+		<td><%=cnt[i] %></td>
+		<td><%=i_price[i] %>원</td>
 		<td>0원</td>
-		<td><%=price %>원</td>
+		<td><%=i_price[i]*cnt[i] %>원</td>
 	</tr>
+	<% } %>
 	<tr>
 		<td></td><td></td><td></td><td></td><td>합계금액:</td><td><%=totalprice %>원</td>
 	</tr>
-</c:forEach>
+<%-- </c:forEach> --%>
 </table>
 </div>
 <div>
@@ -132,8 +165,8 @@
 		<td>배송비</td><td>0원</td>
 	</tr>
 	<tr>
-		<td rowspan="1">쿠폰적용</td><input type="hidden" name="discount">
-		<td rowspan="1">할인:<input type="text" readonly="readonly" id="sale">원 <input type="button" value="쿠폰조회" onclick="selectCoupon()"></td>
+		<td rowspan="1">쿠폰적용</td><input type="hidden" name="discount" value="0">
+		<td rowspan="1">할인:<input type="text" readonly="readonly" id="sale" value="0">원 <input type="button" value="쿠폰조회" onclick="selectCoupon()"></td>
 	</tr>
 	<tr><input type="hidden" id="totPrice" value="<%=totalprice %>" >
 		<td>총 결제금액</td><td><input type="text" name="totalPrice" readonly="readonly" value="<%=totalprice %>" >원</td>
@@ -150,6 +183,7 @@
 	String post="";
 	String addr="";
 	String phone="";
+	System.out.println(list.size());
 	for(int i=0;i<list.size();i++){
 		dto=list.get(i);
 		name=dto.getName();

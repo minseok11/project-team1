@@ -13,9 +13,9 @@
 	<div>
 		<jsp:include page="/adminPage/admin1.jsp"></jsp:include>
 	</div>
-	<a href="/Yoseop/adminPage/layout/item.jsp">이전</a>	
+	<a href="/adminPage/layout/item.jsp">이전</a>	
 	<h1>상품검색</h1>
-	<form action="/Yoseop/Aitems.do?cmd=search" method="post">
+	<form action="/Aitems.do?cmd=search" method="post">
 			<table border="1" width="800px">
 				<tr>
 					<td><select name="option">
@@ -51,7 +51,7 @@
 					<td>${it.retailPrice }</td>
 					<td>${it.price }</td>
 					<td>
-					<a href="/Yoseop/Aitems.do?cmd=detail&code=${it.code }">수정</a>
+					<a href="/Aitems.do?cmd=detail&code=${it.code }">수정</a>
 					<a href="<%=request.getContextPath() %>/Aitems.do?cmd=delete&code=${it.code }">삭제</a>
 					</td>
 				</tr>
@@ -62,7 +62,7 @@
 <!-- 이전 -->
 <c:choose>
 	<c:when test="${startPage>4 }">
-		<a href="/Yoseop/Aitems.do?cmd=search&pageNum=${startPage-1 }">이전</a>
+		<a href="/Aitems.do?cmd=search&pageNum=${startPage-1 }">이전</a>
 	</c:when>
 	<c:otherwise>
 		
@@ -72,17 +72,17 @@
 <c:forEach var="i" begin="${startPage }" end="${endPage }" >
 	<c:choose>
 		<c:when test="${pageNum==i }"><%--현재페이지인경우 색상 다르게 표시하기 --%>
-			<a href="/Yoseop/Aitems.do?cmd=search&pageNum=${i }&option=${option }&search=${search }"><span style="color:red">[${i }]</span></a>
+			<a href="/Aitems.do?cmd=search&pageNum=${i }&option=${option }&search=${search }"><span style="color:red">[${i }]</span></a>
 		</c:when>
 		<c:otherwise>
-			<a href="/Yoseop/Aitems.do?cmd=search&pageNum=${i }&option=${option }&search=${search }"><span style="color:#555">[${i }]</span></a>
+			<a href="/Aitems.do?cmd=search&pageNum=${i }&option=${option }&search=${search }"><span style="color:#555">[${i }]</span></a>
 		</c:otherwise>
 	</c:choose>
 </c:forEach>
 <!-- 다음 -->
 <c:choose>
 	<c:when test="${endPage<pageCount }">
-		<a href="/Yoseop/Aitems.do?cmd=search&pageNum=${endPage+1 }&option=${option }&search=${search }">다음</a>
+		<a href="/Aitems.do?cmd=search&pageNum=${endPage+1 }&option=${option }&search=${search }">다음</a>
 	</c:when>
 	<c:otherwise>
 		다음

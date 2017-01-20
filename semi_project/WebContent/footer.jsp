@@ -12,12 +12,11 @@
 </head>
 <body>
 <ul>
-	<li><a href="/">회사소개</a></li>
-	<li><a href="/">채용정보</a></li>
-	<li><a href="/">이용약관</a></li>
-	<li><a href="/">개인정보 처리방침</a></li>
-	<li><a href="/">제휴/광고</a></li>
-	<li><a href="/">입점문의</a></li>
+	<li><a href="/starter.do?content=/footer/footer1.jsp">회사소개</a></li>
+	<li><a href="/starter.do?content=/footer/footer2.jsp">이용안내</a></li>
+	<li><a href="/starter.do?content=/footer/footer3.jsp">이용약관</a></li>
+	<li><a href="/starter.do?content=/footer/footer4.jsp">개인정보 취급방침</a></li>
+	<li><a href="/starter.do?content=/footer/footer5.jsp">법적고지</a></li>
 </ul>
 </body>
 </html>

@@ -8,16 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/adminPage/admin.jsp"></jsp:include>
-	<div>
-		<jsp:include page="/adminPage/admin1.jsp"></jsp:include>
-	</div>
 	<h2>검색기능</h2>
 	<form action="" method="post">
-	<select name="option">
-		<option value="id">아이디</option>
-		<option value="code">상품코드</option>
-	</select>
 	<input type="text" name="search">
 	<input type="submit" value="검색">
 	</form>
@@ -26,7 +18,7 @@
 		<tr>
 			<th>결제번호</th><th>아이디</th><th>상품코드</th><th>결제금액</th><th>결제날짜</th><th>상태</th><th></th>
 		</tr>
-		<c:forEach var="pay" items="${list2 }">
+		<c:forEach var="pay" items="${list3 }">
 			<tr>
 				<td>${pay.paymentNum }</td>
 				<td>${pay.id }</td>

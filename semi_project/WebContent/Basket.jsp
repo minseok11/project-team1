@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 
 <script type="text/javascript">
-	function checkAll() {
+	/*function checkAll() {
 		var chk=document.getElementById("chk");
 		var choice=document.getElementsByName("choice");
 		if(chk.value==0){
@@ -24,7 +24,7 @@
 			}
 		}
 		Price();
-	}
+	}*/
 	
 	var total=0;
 	var rprice=0;
@@ -34,19 +34,21 @@
 		var price=document.getElementsByName("price");
 		var cnt=document.getElementsByName("cnt");
 		var div=document.getElementById("result");
-		for(var i=0; i<choice.length;i++){
-			if(choice[i].checked==true){
+		for(var i=0; i<price.length;i++){
 				rprice=parseFloat(price[i].value);
 	
 				rcnt=parseFloat(cnt[i].value);
 
 				total=total+(rprice*rcnt);	
 
-			}
 		}
 	div.innerHTML=total+"원";
 	total=0;
 }
+	onload=Price;
+	function changeV(){
+		Price();
+	}
 	
 </script>
 </head>
@@ -59,19 +61,21 @@
  -->
 <h1>장바구니</h1>
 	<table border="1" width="1200px" ></table>
-	<input type="checkbox" id="chk" value="0" onclick="checkAll()">전체선택&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<%--<input type="checkbox" id="chk" value="0" onclick="checkAll()">전체선택&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
 	상품정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	수량&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	상품금액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	배송정보
 	<table border="1" width="1200px" ></table>
+	<form method="post" action="/payment.do?cmd=insertTab">
 	<div id="box1">
 		<c:forEach var="dto" items="${requestScope.list4 }">
-			<input type="hidden" name="buyNum" value="${requestScope.buyNum }">
-			<input type="checkbox" name="choice" onclick="Price()">
+			<input type="hidden" name="buyNum" value="${dto.buyNum }">
+			<%--<input type="checkbox" name="choice" onclick="Price()" value="${dto }"> --%>
 			<img src="${dto.itemimgroot }">
-			${dto.name }
-			<input type="number" min="0" value="${dto.cnt }" name="cnt" id="cnt" style="width: 3em">
+			<input type="hidden" value="${dto.code }" name="itemCode">${dto.code }
+			${dto.name } 
+			<input type="number" min="0" value="${dto.cnt }" name="cnt" id="cnt" style="width: 3em" onchange="changeV()">
 			<input type="text" name="price" value="${dto.totalprice}" readonly="readonly">
 			무료배송
 			<a href="/basket.do?cmd=delete&buyNum=${dto.buyNum }">삭제</a>
@@ -83,8 +87,8 @@
 		총 배송비 0원
 		
 	</div>	
-	<input type="submit" value="계속 쇼핑하기">
+	<input type="button" value="계속 쇼핑하기">
 	<input type="submit" value="구매하기">
-	
+	</form>
 </body>
 </html>

@@ -227,4 +227,30 @@ public class ItemDao {
 			jdbcUtil.close(rs,pst,con);
 		}
 	}
+	public ArrayList<ItemDTO> mdItem(){
+		Connection con=null;
+		PreparedStatement pst=null;
+		ResultSet rs=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="select * from (select md.*,rownum r from (select * from item order by inventory desc,price desc)md) where r>=1 and r<=9";
+			pst=con.prepareStatement(sql);
+			rs=pst.executeQuery();
+			ArrayList<ItemDTO> list=new ArrayList<>();
+			while(rs.next()){
+				String code=rs.getString("code");
+				String itemImgRoot=rs.getString("itemImgRoot");
+				ItemDTO dto=new ItemDTO();
+				dto.setCode(code);
+				dto.setItemImgRoot(itemImgRoot);
+				list.add(dto);
+			}
+			return list;
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return null;
+		}finally{
+			jdbcUtil.close(rs, pst, con);
+		}
+	}
 }

@@ -233,4 +233,32 @@ public class ItemDao {
 			return null;
 		}
 	}
+	public ItemDTO b_list(String code){
+		Connection con=null;
+		PreparedStatement pst=null;
+		ResultSet rs=null;
+		try{
+			con=jdbcUtil.getConn();
+			String sql="select * from item where code=?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, code);
+			rs=pst.executeQuery();
+			if(rs.next()){
+				ItemDTO dto=new ItemDTO(rs.getString("code"),
+						rs.getInt("price"), 
+						rs.getInt("inventory"),
+						rs.getString("name"), 
+						rs.getInt("retailPrice"),
+						rs.getString("itemImgRoot"),
+						rs.getString("detailImg"),
+						rs.getString("categoryList"),
+						rs.getString("supplier"));
+				return dto;
+			}
+			return null;
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+			return null;
+		}
+	}
 }

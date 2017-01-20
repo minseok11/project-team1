@@ -28,7 +28,7 @@ public class WriteController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		ServletContext application=req.getServletContext();
-		String uploadPath=application.getRealPath("/writeImg");
+		String uploadPath=application.getRealPath("/images/customerImg");
 		File file=new File(uploadPath);
 		if(!file.exists())file.mkdirs();
 		MultipartRequest mr=new MultipartRequest(

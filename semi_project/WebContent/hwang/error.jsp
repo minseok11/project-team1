@@ -5,13 +5,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	#errimg{}
+	#goMain{}
+</style>
 </head>
 <body>
-<jsp:include page="/adminPage/admin.jsp"></jsp:include>
-<div>
-	<jsp:include page="/adminPage/admin1.jsp"></jsp:include>
+<div id="errimg" align="center">
+	<img src="/images/ErrorPage.png" id="errimg"><br>
 </div>
-<a href="/adminPage/layout/couponInsert.jsp">쿠폰추가</a>
-<a href="/coupon.do?cmd=list">쿠폰조회</a>
+<div id="goMain" align="center">
+	<a href="/starter.do"><img src="/images/main.png" id="goMain"></a>
+</div>
 </body>
 </html>

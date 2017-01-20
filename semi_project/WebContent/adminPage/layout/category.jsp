@@ -23,12 +23,12 @@
 	<c:forEach var="dto" items="${list }">
 		<tr>
 			<td align="center">${dto.categoryList }</td>
-			<td align="center"><a href="/Yoseop/scategory.do?cmd=delete&cate=${dto.categoryList}">삭제</a></td>
+			<td align="center"><a href="/scategory.do?cmd=delete&cate=${dto.categoryList}">삭제</a></td>
 		</tr>
 	</c:forEach>
 </table>
 <div>
-<form method="post" action="/Yoseop/scategory.do?cmd=insert">
+<form method="post" action="/scategory.do?cmd=insert">
 	카테고리 명<input type="text" name="cate">
 	<input type="submit" value="추가">
 </form>

@@ -19,26 +19,27 @@
 	<span style="color:white;font-size:30px;font-weight: bold;">카테고리</span>
 		<div class="menu" align="left">
 			<ul>
-				<li><a href="/Yoseop/scategory.do?cmd=list">카테고리설정</a></li>
+				<li><a href="/scategory.do?cmd=list">카테고리설정</a></li>
 				<%-- <li><a href="/Yoseop/layout/event.jsp">이벤트 등록</a></li> --%>
-				<li><a href="/Yoseop/qna.do?cmd=list">1:1문의</a></li>
+				<li><a href="/qna.do?cmd=list">1:1문의</a></li>
 			</ul>
 		</div>
 		<span style="color:white;font-size:30px;font-weight: bold;">시스템 관리</span>
 		<div class="menu" align="left">
 			<ul>
-				<li><a href="/Yoseop/users.do?cmd=list">고객 관리</a></li>
-				<li><a href="/Yoseop/supplier.do?cmd=list">공급업체 관리</a></li>
-				<li><a href="/Yoseop/Aitems.do?cmd=list">상품 관리</a></li>
-				<li><a href="/Yoseop/returnitem.do?cmd=list">반품 관리</a></li>
-				<li><a href="/Yoseop/adminPage/layout/coupon.jsp">쿠폰 관리</a></li>
+				<li><a href="/users.do?cmd=list">고객 관리</a></li>
+				<li><a href="/supplier.do?cmd=list">공급업체 관리</a></li>
+				<li><a href="/Aitems.do?cmd=list">상품 관리</a></li>
+				<li><a href="/returnitem.do?cmd=list">반품 관리</a></li>
+				<li><a href="/adminPage/layout/coupon.jsp">쿠폰 관리</a></li>
+				<li><a href="/starter.do">메인페이지로 이동</a></li>
 			</ul>
 		</div>
 		<span style="color:white;font-size:30px;font-weight: bold;">통계</span>
 		<div class="menu" align="left">
 			<ul>
-				<li><a href="/Yoseop/payment.do?cmd=list">결제내역</a></li>                                                         
-				<li><a href="/Yoseop/statistic.do?cmd=list">통계</a></li>
+				<li><a href="/payment.do?cmd=list">결제내역</a></li>                                                         
+				<li><a href="/statistic.do?cmd=list">통계</a></li>
 			</ul>
 		</div>
 	</div>

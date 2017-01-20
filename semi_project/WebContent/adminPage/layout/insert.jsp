@@ -16,7 +16,7 @@
 		<jsp:include page="/adminPage/admin1.jsp"></jsp:include>
 	</div>
 	<br>
-	<a href="/Yoseop/adminPage/layout/item.jsp">이전</a>
+	<a href="/adminPage/layout/item.jsp">이전</a>
 	<br>
 	<form action="<%=request.getContextPath()%>/Aitems.do?cmd=insert" method="post" enctype="multipart/form-data">
 	<table border="1" width="800">
