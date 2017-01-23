@@ -9,6 +9,7 @@
 <style>
 	#1{width:200px;height:100px;border:1px solid black;}
 	#2{width:605px;height:600px;border:1px solid black;}
+	.qnaP{font-size:8px;}
 </style>
 <script type="text/javascript">
 	function msg(){
@@ -30,7 +31,10 @@
 	<option value="결제문의">결제문의</option>
 	<option value="상품문의">상품문의</option>
 	<option value="기타문의">기타문의</option>
-</select><br><br>
+</select><br>
+<p class="qnaP">단순변심에 의한 환불은 제품 수령 후 7일이내까지만 가능합니다.(업체배송 : 왕복배송비 고객부담 / 로켓배송 : 반품비(5,000원) 고객부담) </p>
+<p class="qnaP">제품 하자의 경우 물품수령 후 3개월이내 또는 그 사실을 안 날로부터 30일이내 반품 가능합니다.</p>
+<br>
 <div id="1">
 답변받으실분<br>
 성명<input type="text" value="${requestScope.name }" disabled="disabled"><br>

@@ -19,7 +19,7 @@
 		
 		xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=findEmail;
-		xhr.open("get","CustomerInfo.do?cmd=emailCheck&email="+ email, true);
+		xhr.open("get","/CustomerInfo.do?cmd=emailCheck&email="+ email, true);
 		xhr.send();
 	}
 		function findEmail() {

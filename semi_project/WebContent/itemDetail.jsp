@@ -62,6 +62,11 @@
 .box{float:left}
 </style>
 <script>
+	function imgPopup(root){
+		var imgUrl="/ItemDetailImg.jsp";
+		var popupOption= "width=370, height=360, resizable=no, scrollbars=yes, status=no;";    //팝업창 옵션(optoin)
+		window.open(imgUrl+"?root="+root,"_blank",popupOption);
+	}
 	function msg(){
 		if("${requestScope.msg}"!=""){
 			alert("${requestScope.msg}");
@@ -142,7 +147,7 @@
 		<div id="writeList">
 			<div id="boardList" align="center">
 				<c:forEach var="list2" items="${requestScope.list3 }">
-					<img src="/writeImg/${list2.imgName }" class="boardImg">
+					<a href="javascript:imgPopup('/images/customerImg/${list2.imgName }')"><img src="/images/customerImg/${list2.imgName }" class="boardImg"></a>
 					<div class="box">
 					<p>제목:${list2.title }</p>
 					<p>작성자:${list2.id }</p>
